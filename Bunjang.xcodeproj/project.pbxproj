@@ -57,6 +57,43 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D404F5FB2A429BAD0065E095 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D404F5FC2A429BB30065E095 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D404F5FD2A429BBF0065E095 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D404F5FD2A429BBF0065E095 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D404F5FE2A429BC80065E095 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				D404F5FF2A429BCD0065E095 /* Networks */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		D404F5FF2A429BCD0065E095 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
 		D463D45F2A419E4B00E37898 = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				D463D47F2A41A29F00E37898 /* Application */,
-				D463D46F2A419E4B00E37898 /* ViewController.swift */,
+				D463D4802A41A91F00E37898 /* Presentation */,
+				D463D49B2A4296A700E37898 /* Domain */,
+				D404F5FC2A429BB30065E095 /* Data */,
+				D404F5FE2A429BC80065E095 /* Infrastructure */,
 				D463D4742A419E4C00E37898 /* Assets.xcassets */,
 				D463D4762A419E4C00E37898 /* LaunchScreen.storyboard */,
 				D463D4792A419E4C00E37898 /* Info.plist */,
@@ -94,6 +134,62 @@
 				D463D46D2A419E4B00E37898 /* SceneDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		D463D4802A41A91F00E37898 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				D404F5FB2A429BAD0065E095 /* ViewModels */,
+				D463D48C2A41B7B500E37898 /* Protocols */,
+				D463D4842A41A95D00E37898 /* Views */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		D463D4842A41A95D00E37898 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D463D46F2A419E4B00E37898 /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D463D48C2A41B7B500E37898 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D463D49B2A4296A700E37898 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D463D49C2A4296AB00E37898 /* Repositories */,
+				D463D49D2A4296B500E37898 /* Usecases */,
+				D463D49E2A4296BA00E37898 /* Entities */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D463D49C2A4296AB00E37898 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		D463D49D2A4296B500E37898 /* Usecases */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Usecases;
+			sourceTree = "<group>";
+		};
+		D463D49E2A4296BA00E37898 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
