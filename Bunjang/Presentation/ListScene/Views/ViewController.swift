@@ -10,7 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController {
 
-    let listContainerView = ListContainerView()
+    var tabListView =  TabListView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -26,15 +26,23 @@ class ViewController: UIViewController {
         
         navigationController?.navigationBar.topItem?.title = "List"
         
+        tabListView.setListViewDelegate(listViewDelegate: self)
         setUp()
     }
     
     private func setUp() {
-        view.addSubview(listContainerView)
+        view.addSubview(tabListView)
         
-        listContainerView.snp.makeConstraints {
+        tabListView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+}
+
+extension ViewController: ListViewDelegate {
+    func pushDetailViewController(detailVC: DetailViewController) {
+        detailVC.navigationController?.navigationBar.topItem?.title = "상세"
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 

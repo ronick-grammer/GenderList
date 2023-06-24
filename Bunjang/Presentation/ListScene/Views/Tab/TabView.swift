@@ -13,12 +13,18 @@ class TabView: UICollectionView {
     
     let cellIdentifier = "TabViewCell"
     
+    let viewModel = TabViewModel()
+    
     var disposeBag = DisposeBag()
+    
+    private var tabNames: [String] {
+        ["남자", "여자"]
+    }
     
     private let colorEvent = PublishSubject<[UIColor]>()
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+    init() {
+        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         setUp()
         bind()
@@ -27,7 +33,7 @@ class TabView: UICollectionView {
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setUp() {
@@ -53,7 +59,7 @@ extension TabView {
         colorEvent
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabViewCell.self))
         { index, item, cell in
-            cell.configure(color: item)
+            cell.setTitle(self.tabNames[index])
         }.disposed(by: disposeBag)
         
         rx.itemSelected
@@ -63,8 +69,35 @@ extension TabView {
     }
 }
 
+extension Reactive where Base: TabView {
+    var tabButtonTapped: Observable<PageInfo> {
+        base.rx.itemSelected
+            .map { 
+                let currentPage = $0.row
+                let previousPage = base.viewModel.pageInfo.prev
+                
+                if base.viewModel.pageInfo.current != currentPage {
+                    base.viewModel.pageInfo.prev = base.viewModel.pageInfo.current
+                    base.viewModel.pageInfo.current = currentPage
+                }
+                
+                return (prev: previousPage, current: currentPage)
+            }
+    }
+    
+    var selectedTab: Binder<PageInfo> {
+        Binder(self.base) { tabView, pageInfo in
+            let prevCell = tabView.cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabViewCell
+            prevCell?.contentView.backgroundColor = .yellow
+            
+            let currentCell = tabView.cellForItem(at: IndexPath(row: pageInfo.current, section: 0)) as? TabViewCell
+            currentCell?.contentView.backgroundColor = .green
+        }
+    }
+}
+
 
 let colors: [UIColor] = [
-    .gray,
-    .red
+    .green,
+    .yellow
 ]
