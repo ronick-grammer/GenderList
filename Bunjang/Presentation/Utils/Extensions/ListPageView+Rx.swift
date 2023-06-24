@@ -24,6 +24,7 @@ extension Reactive where Base: ListPageView {
             }
     }
     
+    //TODO: 수정 필요
     var columnStyle: Binder<ColumnStyle> {
         Binder(self.base) { listPageView, columnStyle in
             listPageView.columnStyle = columnStyle
