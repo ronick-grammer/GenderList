@@ -8,17 +8,17 @@
 import RxSwift
 
 protocol GenderListUsecase {
-    func get(genderListQuery: GenderListQuery) -> Observable<Result<GenderList, Error>>
+    func get(genderListQuery: GenderListQuery) -> Observable<GenderList>
 }
 
 final class DefaultGenderListUsecase: GenderListUsecase {
-    let genderListRepository: GenderListRepository
+    private let genderListRepository: GenderListRepository
     
     init(genderListRepository: GenderListRepository) {
         self.genderListRepository = genderListRepository
     }
     
-    func get(genderListQuery: GenderListQuery) -> Observable<Result<GenderList, Error>> {
+    func get(genderListQuery: GenderListQuery) -> Observable<GenderList> {
         genderListRepository.getGenderList(genderListQuery: genderListQuery)
     }
 
