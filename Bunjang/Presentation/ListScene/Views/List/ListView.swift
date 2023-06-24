@@ -14,7 +14,7 @@ protocol ListViewDelegate {
 
 class ListView: UICollectionView {
     
-    let cellIdentifier = "ListViewCell"
+    private let cellIdentifier = "ListViewCell"
     
     let colorEvent = PublishSubject<[UIColor]>()
     var disposeBag = DisposeBag()
