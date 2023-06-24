@@ -29,6 +29,9 @@
 		D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */; };
 		D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */; };
 		D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */; };
+		D4DEA8202A46C182006FB3DF /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA81F2A46C182006FB3DF /* ListViewModel.swift */; };
+		D4DEA8222A46C330006FB3DF /* GenderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8212A46C330006FB3DF /* GenderList.swift */; };
+		D4DEA8242A46C5A6006FB3DF /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8232A46C5A6006FB3DF /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListPageView+Rx.swift"; sourceTree = "<group>"; };
 		D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStyle.swift; sourceTree = "<group>"; };
+		D4DEA81F2A46C182006FB3DF /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		D4DEA8212A46C330006FB3DF /* GenderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderList.swift; sourceTree = "<group>"; };
+		D4DEA8232A46C5A6006FB3DF /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +101,7 @@
 				D4DEA8172A45AFD2006FB3DF /* TabListViewModel.swift */,
 				D4DEA8132A44933D006FB3DF /* ListPageViewModel.swift */,
 				D4DEA8152A456E08006FB3DF /* TabViewModel.swift */,
+				D4DEA81F2A46C182006FB3DF /* ListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -125,6 +132,7 @@
 		D404F5FF2A429BCD0065E095 /* Networks */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8232A46C5A6006FB3DF /* NetworkService.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -243,9 +251,9 @@
 		D463D49B2A4296A700E37898 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				D463D49C2A4296AB00E37898 /* Repositories */,
-				D463D49D2A4296B500E37898 /* Usecases */,
 				D463D49E2A4296BA00E37898 /* Entities */,
+				D463D49D2A4296B500E37898 /* Usecases */,
+				D463D49C2A4296AB00E37898 /* Repositories */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -267,6 +275,7 @@
 		D463D49E2A4296BA00E37898 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8212A46C330006FB3DF /* GenderList.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -394,7 +403,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4DEA8242A46C5A6006FB3DF /* NetworkService.swift in Sources */,
 				D4DEA8182A45AFD2006FB3DF /* TabListViewModel.swift in Sources */,
+				D4DEA8222A46C330006FB3DF /* GenderList.swift in Sources */,
 				D404F6032A429D5B0065E095 /* TabViewCell.swift in Sources */,
 				D404F6082A42F65C0065E095 /* TabListView.swift in Sources */,
 				D404F6172A432C1D0065E095 /* ListViewCell.swift in Sources */,
@@ -404,6 +415,7 @@
 				D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */,
 				D463D4702A419E4B00E37898 /* ViewController.swift in Sources */,
 				D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */,
+				D4DEA8202A46C182006FB3DF /* ListViewModel.swift in Sources */,
 				D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */,
 				D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */,
 				D404F6122A4302CC0065E095 /* ListPageViewCell.swift in Sources */,
