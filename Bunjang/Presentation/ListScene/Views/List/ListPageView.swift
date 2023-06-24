@@ -9,26 +9,38 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+typealias PageInfo = (prev: Int, current: Int)
+
 class ListPageView: UICollectionView {
     
+    typealias ViewModel = ListPageViewModel
+    
     let cellIdentifier = "ListPageViewCell"
+    
+    let viewModel = ViewModel()
+    
+    let input: ViewModel.Input
+    
+    let output: ViewModel.Output
     
     let colorEvent = PublishSubject<[UIColor]>()
     
     var disposeBag = DisposeBag()
     
-    let optionButton: UIButton = {
-        let button = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "plus", withConfiguration: config)
-        
-        button.setImage(image, for: .normal)
-        
-        return button
-    }()
+    var columnStyle = ColumnStyle.two
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+    var listViewDelegate: ListViewDelegate?
+    
+    init(optionButtonTapped: Observable<Void>) {
+        
+        self.input = ViewModel.Input(
+            optionButtonTapped: optionButtonTapped
+        )
+        
+        self.output = viewModel.transform(input: input)
+        
+        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
         setUp()
         bind()
         
@@ -56,22 +68,18 @@ class ListPageView: UICollectionView {
     
     private func setUpLayout() {
         
-        
-//        addSubview(optionButton)
-//        optionButton.snp.makeConstraints {
-//            $0.width.height.equalTo(50)
-//            $0.centerX.equalToSuperview()
-//            $0.bottom.equalToSuperview().offset(630)
-//        }
     }
 }
 
-extension ListPageView {
+extension ListPageView: Bindable {
+    
     func bind() {
+        
         colorEvent
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
         { index, item, cell in
-            cell.configure(color: item)
+            cell.configure(color: item, columnStyle: self.columnStyle)
+            cell.listView.listViewDelegate = self.listViewDelegate
         }.disposed(by: disposeBag)
     }
 }
@@ -81,4 +89,3 @@ extension ListPageView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: UIWindow().screen.bounds.width, height: bounds.height)
     }
 }
-

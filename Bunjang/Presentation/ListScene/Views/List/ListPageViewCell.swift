@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class ListPageViewCell: UICollectionViewCell {
     
@@ -28,8 +29,13 @@ class ListPageViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(color: UIColor) {
+    func configure(color: UIColor, columnStyle: ColumnStyle) {
         backgroundColor = color
+        listView.configure(columnStyle: columnStyle)
+    }
+    
+    func changeColumnStyle(columnStyle: ColumnStyle) {
+        listView.setColumnStyle(columnStyle: columnStyle)
     }
     
 }

@@ -10,7 +10,7 @@
 		38D8301551DA56E55E012A2F /* Pods_Bunjang.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B062CB3D3363D57E3E774095 /* Pods_Bunjang.framework */; };
 		D404F6012A429CA40065E095 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6002A429CA40065E095 /* TabView.swift */; };
 		D404F6032A429D5B0065E095 /* TabViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6022A429D5B0065E095 /* TabViewCell.swift */; };
-		D404F6082A42F65C0065E095 /* ListContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6072A42F65C0065E095 /* ListContainerView.swift */; };
+		D404F6082A42F65C0065E095 /* TabListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6072A42F65C0065E095 /* TabListView.swift */; };
 		D404F60A2A42FAF70065E095 /* ListPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6092A42FAF70065E095 /* ListPageView.swift */; };
 		D404F6122A4302CC0065E095 /* ListPageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6112A4302CC0065E095 /* ListPageViewCell.swift */; };
 		D404F6152A432C130065E095 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6142A432C130065E095 /* ListView.swift */; };
@@ -22,6 +22,13 @@
 		D463D4782A419E4C00E37898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D463D4762A419E4C00E37898 /* LaunchScreen.storyboard */; };
 		D4DEA80D2A448396006FB3DF /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA80C2A448396006FB3DF /* Bindable.swift */; };
 		D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA80E2A4483AC006FB3DF /* ViewModelType.swift */; };
+		D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8112A4485D1006FB3DF /* UICollectionView+Extension.swift */; };
+		D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8132A44933D006FB3DF /* ListPageViewModel.swift */; };
+		D4DEA8162A456E08006FB3DF /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8152A456E08006FB3DF /* TabViewModel.swift */; };
+		D4DEA8182A45AFD2006FB3DF /* TabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8172A45AFD2006FB3DF /* TabListViewModel.swift */; };
+		D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */; };
+		D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */; };
+		D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +36,7 @@
 		B062CB3D3363D57E3E774095 /* Pods_Bunjang.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bunjang.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D404F6002A429CA40065E095 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		D404F6022A429D5B0065E095 /* TabViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewCell.swift; sourceTree = "<group>"; };
-		D404F6072A42F65C0065E095 /* ListContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContainerView.swift; sourceTree = "<group>"; };
+		D404F6072A42F65C0065E095 /* TabListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListView.swift; sourceTree = "<group>"; };
 		D404F6092A42FAF70065E095 /* ListPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPageView.swift; sourceTree = "<group>"; };
 		D404F6112A4302CC0065E095 /* ListPageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPageViewCell.swift; sourceTree = "<group>"; };
 		D404F6142A432C130065E095 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -43,6 +50,13 @@
 		D463D4792A419E4C00E37898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DEA80C2A448396006FB3DF /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D4DEA80E2A4483AC006FB3DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		D4DEA8112A4485D1006FB3DF /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		D4DEA8132A44933D006FB3DF /* ListPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPageViewModel.swift; sourceTree = "<group>"; };
+		D4DEA8152A456E08006FB3DF /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
+		D4DEA8172A45AFD2006FB3DF /* TabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabListViewModel.swift; sourceTree = "<group>"; };
+		D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListPageView+Rx.swift"; sourceTree = "<group>"; };
+		D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnStyle.swift; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +92,9 @@
 		D404F5FB2A429BAD0065E095 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8172A45AFD2006FB3DF /* TabListViewModel.swift */,
+				D4DEA8132A44933D006FB3DF /* ListPageViewModel.swift */,
+				D4DEA8152A456E08006FB3DF /* TabViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -124,11 +141,12 @@
 		D404F6052A42F6480065E095 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				D404F6072A42F65C0065E095 /* ListContainerView.swift */,
+				D404F6072A42F65C0065E095 /* TabListView.swift */,
 				D404F6092A42FAF70065E095 /* ListPageView.swift */,
 				D404F6112A4302CC0065E095 /* ListPageViewCell.swift */,
 				D404F6142A432C130065E095 /* ListView.swift */,
 				D404F6162A432C1D0065E095 /* ListViewCell.swift */,
+				D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -145,6 +163,8 @@
 		D404F60D2A43015F0065E095 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8102A4485AC006FB3DF /* Extensions */,
+				D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -249,6 +269,15 @@
 			children = (
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		D4DEA8102A4485AC006FB3DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4DEA8112A4485D1006FB3DF /* UICollectionView+Extension.swift */,
+				D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,15 +394,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4DEA8182A45AFD2006FB3DF /* TabListViewModel.swift in Sources */,
 				D404F6032A429D5B0065E095 /* TabViewCell.swift in Sources */,
-				D404F6082A42F65C0065E095 /* ListContainerView.swift in Sources */,
+				D404F6082A42F65C0065E095 /* TabListView.swift in Sources */,
 				D404F6172A432C1D0065E095 /* ListViewCell.swift in Sources */,
 				D404F6012A429CA40065E095 /* TabView.swift in Sources */,
+				D4DEA8162A456E08006FB3DF /* TabViewModel.swift in Sources */,
 				D4DEA80D2A448396006FB3DF /* Bindable.swift in Sources */,
+				D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */,
 				D463D4702A419E4B00E37898 /* ViewController.swift in Sources */,
+				D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */,
+				D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */,
+				D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */,
 				D404F6122A4302CC0065E095 /* ListPageViewCell.swift in Sources */,
 				D463D46C2A419E4B00E37898 /* AppDelegate.swift in Sources */,
 				D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */,
+				D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */,
 				D463D46E2A419E4B00E37898 /* SceneDelegate.swift in Sources */,
 				D404F60A2A42FAF70065E095 /* ListPageView.swift in Sources */,
 				D404F6152A432C130065E095 /* ListView.swift in Sources */,
