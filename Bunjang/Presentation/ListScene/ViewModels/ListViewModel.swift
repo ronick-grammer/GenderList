@@ -14,7 +14,7 @@ class ListViewModel: ViewModelType {
     }
     
     struct Output {
-        let genderList: Observable<[Gender]>
+        let genderList: BehaviorSubject<[Gender]>
     }
     
     var disposeBag = DisposeBag()
@@ -29,12 +29,14 @@ class ListViewModel: ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let genderList = input.tabInitialized
+        let genderList = BehaviorSubject<[Gender]>.init(value: [])
+        input.tabInitialized
             .flatMap { gender -> Observable<[Gender]> in
                 let query = GenderListQuery(gender: gender)
                 return self.genderListUsecase.get(genderListQuery: query)
                         .map { $0.results }
-            }
+            }.subscribe(onNext: { genderList.onNext($0) })
+            .disposed(by: disposeBag)
         
         return Output(
             genderList: genderList

@@ -25,8 +25,6 @@ class ListPageView: UICollectionView {
     
     var disposeBag = DisposeBag()
     
-    var columnStyle = ColumnStyle.two
-    
     var listViewDelegate: ListViewDelegate?
     
     init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>) {
@@ -67,7 +65,7 @@ extension ListPageView: Bindable {
         output.tabs
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
         { _, item, cell in
-            cell.configure(columnStyle: self.columnStyle, tabName: item)
+            cell.configure(columnStyle: self.viewModel.columnStyle, tabName: item)
             cell.listView?.listViewDelegate = self.listViewDelegate
         }.disposed(by: disposeBag)
     }

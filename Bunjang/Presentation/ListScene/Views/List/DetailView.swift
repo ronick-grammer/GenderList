@@ -69,7 +69,9 @@ class DetailView: UIView {
         }
     }
     
-    func configure(genderInfo: Gender) {
+    func configure(genderInfo: Gender?) {
+        guard let genderInfo = genderInfo else { return }
+        
         let profileImageUrl = URL(string: genderInfo.picture.large)
         profileImageView.kf.setImage(with: profileImageUrl)
         nameLabel.text = genderInfo.name.first + genderInfo.name.last
