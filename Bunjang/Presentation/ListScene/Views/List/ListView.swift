@@ -22,7 +22,8 @@ class ListView: UICollectionView {
     
     lazy var input = ViewModel.Input(
         tabInitialized: PublishSubject<String>(),
-        scrolledToBottom: rx.scrolledToBottom
+        scrolledToBottom: rx.scrolledToBottom,
+        didPullToRefresh: PublishSubject<Void>()
     )
     
     lazy var output = viewModel.transform(input: input)
@@ -30,11 +31,14 @@ class ListView: UICollectionView {
     var disposeBag = DisposeBag()
     
     var listViewDelegate: ListViewDelegate?
-    
-    var tabInitialzied = PublishSubject<String>()
-    
+
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(startRefresh), for: .valueChanged)
+        self.refreshControl = refreshControl
+        
         setUp()
         bind()
     }
@@ -75,6 +79,11 @@ class ListView: UICollectionView {
         }
         
         self.collectionViewLayout = layout
+    }
+    
+    @objc func startRefresh() {
+        input.didPullToRefresh.onNext(Void())
+        refreshControl?.endRefreshing()
     }
 }
 
