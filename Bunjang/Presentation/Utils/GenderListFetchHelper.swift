@@ -37,7 +37,7 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
     
     func fetch(genderType: String, genderList: BehaviorSubject<[Element]>) {
         self.pagenationGenerator.next { page, limit, completion in
-            let query = GenderListQuery(gender: genderType, page: page, results: limit, seed: self.seed)
+            let query = GenderListQuery(page: page, results: limit, seed: self.seed)
             self.genderListUsecase.get(genderListQuery: query)
                 .map { $0.results.filter { genderList in genderList.gender == genderType } }
                 .subscribe(onNext: { completion($0) })
