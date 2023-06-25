@@ -10,7 +10,8 @@ import RxSwift
 class ListViewModel: ViewModelType {
     
     struct Input {
-        let tabInitialized: Observable<String>
+        let tabInitialized: PublishSubject<String>
+        let scrolledToBottom: Observable<Void>
     }
     
     struct Output {
@@ -18,25 +19,32 @@ class ListViewModel: ViewModelType {
     }
     
     var disposeBag = DisposeBag()
-    
-    private let genderListUsecase: GenderListUsecase
+        
+    private let fetchHelper: DefaultGenderListFetchHelper
     
     init(usecase: GenderListUsecase = DefaultGenderListUsecase(
         genderListRepository: DefaultGenderListRepository(service: DefaultNetworkService()))
     ) {
-        self.genderListUsecase = usecase
+        self.fetchHelper = DefaultGenderListFetchHelper(usecase: usecase)
     }
     
     func transform(input: Input) -> Output {
         
         let genderList = BehaviorSubject<[Gender]>.init(value: [])
+        
+        var genderType = ""
         input.tabInitialized
-            .flatMap { gender -> Observable<[Gender]> in
-                let query = GenderListQuery(gender: gender)
-                return self.genderListUsecase.get(genderListQuery: query)
-                        .map { $0.results }
-            }.subscribe(onNext: { genderList.onNext($0) })
-            .disposed(by: disposeBag)
+            .subscribe(onNext: { gender in
+                genderType = gender
+                self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
+            }).disposed(by: disposeBag)
+        
+        
+        input.scrolledToBottom
+            .filter { self.fetchHelper.fetchStatus == .ready }
+            .subscribe(onNext: {
+                self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
+            }).disposed(by: disposeBag)
         
         return Output(
             genderList: genderList
