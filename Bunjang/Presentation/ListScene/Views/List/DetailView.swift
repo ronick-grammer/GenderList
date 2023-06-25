@@ -9,6 +9,17 @@ import UIKit
 
 class DetailView: UIView {
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = false
+        scrollView.alwaysBounceHorizontal = false
+        
+        scrollView.zoomScale = 1.0
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 2.0
+        return scrollView
+    }()
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
@@ -41,6 +52,7 @@ class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        scrollView.delegate = self
         setUp()
     }
     
@@ -49,23 +61,29 @@ class DetailView: UIView {
     }
     
     private func setUp() {
-        addSubview(profileImageView)
-        profileImageView.snp.makeConstraints {
+        addSubview(scrollView)
+        scrollView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalToSuperview().offset(100)
             $0.height.equalTo(500)
         }
         
+        scrollView.addSubview(profileImageView)
+        profileImageView.snp.makeConstraints {
+            $0.width.equalTo(scrollView)
+            $0.height.equalTo(scrollView)
+        }
+        
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(20)
-            $0.leading.equalTo(profileImageView).offset(leadingSpace)
+            $0.top.equalTo(scrollView.snp.bottom).offset(20)
+            $0.leading.equalTo(scrollView).offset(leadingSpace)
         }
         
         addSubview(emailLabel)
         emailLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom)
-            $0.leading.equalTo(profileImageView).offset(leadingSpace)
+            $0.leading.equalTo(scrollView).offset(leadingSpace)
         }
     }
     
@@ -76,5 +94,11 @@ class DetailView: UIView {
         profileImageView.kf.setImage(with: profileImageUrl)
         nameLabel.text = genderInfo.name.first + genderInfo.name.last
         emailLabel.text = genderInfo.email
+    }
+}
+
+extension DetailView: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return profileImageView
     }
 }
