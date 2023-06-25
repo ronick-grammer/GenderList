@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class ListPageViewCell: UICollectionViewCell {
+final class ListPageViewCell: UICollectionViewCell {
     
     var listView = ListView()
     

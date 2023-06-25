@@ -12,7 +12,7 @@ protocol ListViewDelegate {
     func pushDetailViewController(detailVC: DetailViewController)
 }
 
-class ListView: UICollectionView {
+final class ListView: UICollectionView {
     
     private let cellIdentifier = "ListViewCell"
     

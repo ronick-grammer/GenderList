@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class ListPageViewModel: ViewModelType {
+final class ListPageViewModel: ViewModelType {
     
     struct Input {
         let tabsInitialized: Observable<[String]>

@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class ListViewModel: ViewModelType {
+final class ListViewModel: ViewModelType {
     
     struct Input {
         let tabInitialized: PublishSubject<String>

@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TabListView: UIView {
+final class TabListView: UIView {
     
     private let tabView: TabView
     

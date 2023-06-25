@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
     
     private let detailView: DetailView
     

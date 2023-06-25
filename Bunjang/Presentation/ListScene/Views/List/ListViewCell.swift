@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ListViewCell: UICollectionViewCell {
+final class ListViewCell: UICollectionViewCell {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()

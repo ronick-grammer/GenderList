@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class TabViewModel: ViewModelType {
+final class TabViewModel: ViewModelType {
     
     struct Input {
         let tabsInitialized: Observable<[String]>
