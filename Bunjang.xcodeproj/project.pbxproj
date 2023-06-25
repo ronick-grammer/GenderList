@@ -131,7 +131,6 @@
 		D404F5FC2A429BB30065E095 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				D4DEA8322A47118D006FB3DF /* Network */,
 				D404F5FD2A429BBF0065E095 /* Repositories */,
 			);
 			path = Data;
@@ -328,13 +327,6 @@
 				D463D49C2A4296AB00E37898 /* Repositories */,
 			);
 			path = Interfaces;
-			sourceTree = "<group>";
-		};
-		D4DEA8322A47118D006FB3DF /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		D4DEA8442A48F9D9006FB3DF /* Detail */ = {
