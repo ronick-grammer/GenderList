@@ -11,21 +11,28 @@ final class DefaultPagenationGenerator<T>: PagenationGenerator {
     
     typealias Element = Array<T>
     
-    typealias Fetch = (_ offset: Int, _ limit: Int, _ completion: (_ result: Element) -> Void) -> Void
+    typealias Fetch = (_ page: Int, _ limit: Int, _ completion: @escaping (_ result: Element) -> Void) -> Void
     
-    var offset: Int
+    var page: Int
     let limit: Int
     
-    init(offset: Int, limit: Int = 10) {
-        self.offset = offset
+    private var elements: Element = []
+    
+    public var fetchStatus: FetchStatus = .ready
+    
+    init(page: Int, limit: Int) {
+        self.page = page
         self.limit = limit
     }
     
     func next(fetch: Fetch, onCompletion: ((Element) -> Void)? = nil) {
-        fetch(offset, limit) { [weak self] items in
-            onCompletion?(items)
-            self?.offset += items.count
+        fetchStatus = .loading
+        fetch(page, limit) { [weak self] items in
+            guard let self = self else { return }
+            fetchStatus = .ready
+            self.elements.append(contentsOf: items)
+            self.page += 1
+            onCompletion?(self.elements)
         }
     }
-
 }
