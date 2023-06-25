@@ -19,7 +19,7 @@ final class DefaultGenderListUsecase: GenderListUsecase {
     }
     
     func get(genderListQuery: GenderListQuery) -> Observable<GenderList> {
-        genderListRepository.getGenderList(genderListQuery: genderListQuery)
+        return genderListRepository.getGenderList(genderListQuery: genderListQuery)
     }
 
 }

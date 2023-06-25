@@ -6,18 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ListViewCell: UICollectionViewCell {
     
-    let profileImageView: UIImageView = {
+    private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
         imageView.contentMode = .scaleAspectFit
-        
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Ronick Kim"
         label.font = UIFont.systemFont(ofSize: 13)
@@ -26,7 +26,7 @@ class ListViewCell: UICollectionViewCell {
         return label
     }()
     
-    let emailLabel: UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "ronick@gmail.com"
         label.font = UIFont.systemFont(ofSize: 13)
@@ -64,8 +64,13 @@ class ListViewCell: UICollectionViewCell {
         }
     }
     
-    func configure(color: UIColor) {
-        backgroundColor = color
+    func configure(genderInfo: Gender) {
+        let profileImageUrl = URL(string: genderInfo.picture.large)
+        
+        profileImageView.kf.indicatorType = .activity
+        profileImageView.kf.setImage(with: profileImageUrl)
+        nameLabel.text = genderInfo.name.first + genderInfo.name.last
+        emailLabel.text = genderInfo.email
     }
 }
 

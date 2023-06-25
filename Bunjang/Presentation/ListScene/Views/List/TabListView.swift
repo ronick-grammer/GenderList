@@ -34,11 +34,16 @@ class TabListView: UIView {
     let disposeBag = DisposeBag()
     
     init() {
+        let tabInitialized = Observable<[String]>.just(["male", "female"])
+        
         listPageView = ListPageView(
-            optionButtonTapped: columnStyleButton.rx.tap.share(replay: 1)
+            optionButtonTapped: columnStyleButton.rx.tap.share(replay: 1),
+            tabsInitialized: tabInitialized
         )
         
-        tabView = TabView()
+        tabView = TabView(
+            tabsInitialized: tabInitialized
+        )
         
         input = ViewModel.Input(
             columnStyleButtonTapped: columnStyleButton.rx.tap.asObservable(),

@@ -10,11 +10,11 @@ import RxSwift
 class TabViewModel: ViewModelType {
     
     struct Input {
-        let pageSwiped: Observable<PageInfo>
+        let tabsInitialized: Observable<[String]>
     }
     
     struct Output {
-        
+        let tabs: Observable<[String]>
     }
     
     var pageInfo: PageInfo = (prev: 0, current: 0)
@@ -22,7 +22,8 @@ class TabViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
+        let tabs = input.tabsInitialized
         
-        return Output()
+        return Output(tabs: tabs)
     }
 }

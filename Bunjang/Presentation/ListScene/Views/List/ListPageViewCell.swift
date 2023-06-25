@@ -11,7 +11,9 @@ import RxSwift
 
 class ListPageViewCell: UICollectionViewCell {
     
-    let listView = ListView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var listView: ListView? {
+        didSet { setUp() }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,19 +25,23 @@ class ListPageViewCell: UICollectionViewCell {
     }
     
     private func setUp() {
+        guard let listView = listView else {
+            return
+        }
+        
         contentView.addSubview(listView)
         listView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
-    func configure(color: UIColor, columnStyle: ColumnStyle) {
-        backgroundColor = color
-        listView.configure(columnStyle: columnStyle)
+    func configure(columnStyle: ColumnStyle, tabName: String) {
+        listView = ListView(tab: tabName)
+        listView?.configure(columnStyle: columnStyle)
     }
     
     func changeColumnStyle(columnStyle: ColumnStyle) {
-        listView.setColumnStyle(columnStyle: columnStyle)
+        listView?.setColumnStyle(columnStyle: columnStyle)
     }
     
 }

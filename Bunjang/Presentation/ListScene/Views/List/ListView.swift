@@ -16,16 +16,31 @@ class ListView: UICollectionView {
     
     private let cellIdentifier = "ListViewCell"
     
-    let colorEvent = PublishSubject<[UIColor]>()
+    typealias ViewModel = ListViewModel
+    
+    let viewModel = ViewModel()
+    
+    let input: ViewModel.Input
+    
+    let output: ViewModel.Output
+    
     var disposeBag = DisposeBag()
     
     var listViewDelegate: ListViewDelegate?
     
-    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
-        super.init(frame: frame, collectionViewLayout: layout)
+    private var genderList: [Gender] = []
+    
+    init(tab: String) {
+        input = ViewModel.Input(
+            tabInitialized: Observable<String>.just(tab)
+        )
+        
+        output = viewModel.transform(input: input)
+        
+        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
         setUp()
         bind()
-        colorEvent.onNext(listViewColor)
     }
     
     required init?(coder: NSCoder) {
@@ -47,7 +62,6 @@ class ListView: UICollectionView {
     }
     
     func configure(columnStyle: ColumnStyle) {
-
         setColumnStyle(columnStyle: columnStyle)
     }
     
@@ -72,35 +86,24 @@ class ListView: UICollectionView {
     }
 }
 
-extension ListView {
+extension ListView: Bindable {
+    
     func bind() {
-        colorEvent
+        
+        output.genderList
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListViewCell.self))
         { index, item, cell in
-            cell.configure(color: item)
+            cell.configure(genderInfo: item)
+            self.genderList.append(item)
         }.disposed(by: disposeBag)
         
         rx.itemSelected
             .subscribe(onNext: { indexPath in
-                let cell = self.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! ListViewCell
-                let detailVC = DetailViewController(element: cell)
+                let detailView = DetailView()
+                detailView.configure(genderInfo: self.genderList[indexPath.row])
+                
+                let detailVC = DetailViewController(detailView: detailView)
                 self.listViewDelegate?.pushDetailViewController(detailVC: detailVC)
-                
-                
             }).disposed(by: disposeBag)
     }
 }
-
-
-
-let listViewColor: [UIColor] = [
-    .purple,
-    .blue,
-    .brown,
-    .cyan,
-    .gray,
-    .orange,
-    .yellow,
-    .systemPink,
-    .red
-]

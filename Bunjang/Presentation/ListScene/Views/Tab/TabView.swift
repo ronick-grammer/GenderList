@@ -11,25 +11,26 @@ import RxCocoa
 
 class TabView: UICollectionView {
     
+    typealias ViewModel = TabViewModel
+    
     let cellIdentifier = "TabViewCell"
     
-    let viewModel = TabViewModel()
+    let viewModel = ViewModel()
+    
+    let input: ViewModel.Input
+    
+    let output: ViewModel.Output
     
     var disposeBag = DisposeBag()
     
-    private var tabNames: [String] {
-        ["남자", "여자"]
-    }
-    
-    private let colorEvent = PublishSubject<[UIColor]>()
-    
-    init() {
+    init(tabsInitialized: Observable<[String]>) {
+        input = ViewModel.Input(tabsInitialized: tabsInitialized)
+        output = viewModel.transform(input: input)
+        
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         setUp()
         bind()
-        
-        colorEvent.onNext(colors)
     }
     
     required init?(coder: NSCoder) {
@@ -54,12 +55,13 @@ class TabView: UICollectionView {
     
 }
 
-extension TabView {
+extension TabView: Bindable {
+    
     func bind() {
-        colorEvent
+        output.tabs
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabViewCell.self))
         { index, item, cell in
-            cell.setTitle(self.tabNames[index])
+            cell.setTitle(item, isFirstTab: index == 0)
         }.disposed(by: disposeBag)
         
         rx.itemSelected
@@ -88,10 +90,10 @@ extension Reactive where Base: TabView {
     var selectedTab: Binder<PageInfo> {
         Binder(self.base) { tabView, pageInfo in
             let prevCell = tabView.cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabViewCell
-            prevCell?.contentView.backgroundColor = .yellow
+            prevCell?.changeTitleColor(to: .gray)
             
             let currentCell = tabView.cellForItem(at: IndexPath(row: pageInfo.current, section: 0)) as? TabViewCell
-            currentCell?.contentView.backgroundColor = .green
+            currentCell?.changeTitleColor(to: .black)
         }
     }
 }
