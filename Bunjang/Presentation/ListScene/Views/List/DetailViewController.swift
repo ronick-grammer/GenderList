@@ -10,10 +10,10 @@ import RxSwift
 
 class DetailViewController: UIViewController {
     
-    let element: ListViewCell
+    private let detailView: DetailView
     
-    init(element: ListViewCell) {
-        self.element = element
+    init(detailView: DetailView) {
+        self.detailView = detailView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,9 +27,10 @@ class DetailViewController: UIViewController {
     }
     
     private func setUp() {
-        view.addSubview(element)
-        element.snp.makeConstraints {
+        view.addSubview(detailView)
+        detailView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.center.equalToSuperview()
         }
     }
 }
