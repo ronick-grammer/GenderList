@@ -18,7 +18,7 @@ class TabListView: UIView {
     private let columnStyleButton: UIButton = {
         let button = UIButton()
         let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        let image = UIImage(systemName: "plus", withConfiguration: config)
+        let image = UIImage(systemName: "square.grid.2x2", withConfiguration: config)
         
         button.setImage(image, for: .normal)
         
