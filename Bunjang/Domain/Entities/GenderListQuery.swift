@@ -6,9 +6,17 @@
 //
 
 struct GenderListQuery {
-    let gender: String
+    let page: Int
+    
+    let results: Int
+    
+    let seed: String
     
     var parameters: [String: Any] {
-        return ["gender": gender]
+        return [
+            "page": page,
+            "results": results,
+            "seed": seed
+        ]
     }
 }

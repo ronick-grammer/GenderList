@@ -17,11 +17,13 @@ final class DefaultGenderListRepository {
 
 extension DefaultGenderListRepository: GenderListRepository {
     func getGenderList(genderListQuery: GenderListQuery) -> Observable<GenderList> {
-        let gender = genderListQuery.gender
+        let page = genderListQuery.page
+        let results = genderListQuery.results
+        let seed = genderListQuery.seed
         
         return networkService
             .request(
-                urlString: "https://randomuser.me/api/?gender=\(gender)&results=20&inc=name,email,picture",
+                urlString: "https://randomuser.me/api/?page=\(page)&results=\(results)&seed=\(seed)&inc=gender,name,email,picture",
                 queryParameter: genderListQuery.parameters
             )
     }

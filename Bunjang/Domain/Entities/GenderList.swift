@@ -10,6 +10,7 @@ struct GenderList: Decodable {
 }
 
 struct Gender: Decodable {
+    let gender: String
     let name: Name
     let email: String
     let picture: Picture
