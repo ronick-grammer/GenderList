@@ -41,7 +41,6 @@ class ViewController: UIViewController {
 
 extension ViewController: ListViewDelegate {
     func pushDetailViewController(detailVC: DetailViewController) {
-        detailVC.navigationController?.navigationBar.topItem?.title = "상세"
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

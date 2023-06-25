@@ -63,11 +63,6 @@ extension TabView: Bindable {
         { index, item, cell in
             cell.setTitle(item, isFirstTab: index == 0)
         }.disposed(by: disposeBag)
-        
-        rx.itemSelected
-            .bind { indexPath in
-                print(indexPath.row)
-            }.disposed(by: disposeBag)
     }
 }
 
@@ -97,9 +92,3 @@ extension Reactive where Base: TabView {
         }
     }
 }
-
-
-let colors: [UIColor] = [
-    .green,
-    .yellow
-]
