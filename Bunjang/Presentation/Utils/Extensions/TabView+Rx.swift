@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 
 extension Reactive where Base: TabView {
+    
+    /// 탭 버튼 클릭 Observable
     var tabButtonTapped: Observable<PageInfo> {
         base.rx.itemSelected
             .map {
@@ -24,6 +26,8 @@ extension Reactive where Base: TabView {
             }
     }
     
+    
+    /// 탭 버튼 선택 처리 Binder
     var selectedTab: Binder<PageInfo> {
         Binder(self.base) { tabView, pageInfo in
             let prevCell = tabView.cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabViewCell

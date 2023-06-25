@@ -21,6 +21,7 @@ extension DefaultGenderListRepository: GenderListRepository {
         let results = genderListQuery.results
         let seed = genderListQuery.seed
         
+        // TODO: endpoint enum화 작업
         return networkService
             .request(
                 urlString: "https://randomuser.me/api/?page=\(page)&results=\(results)&seed=\(seed)&inc=gender,name,email,picture",

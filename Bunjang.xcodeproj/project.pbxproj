@@ -178,8 +178,6 @@
 				D404F6112A4302CC0065E095 /* ListPageViewCell.swift */,
 				D404F6142A432C130065E095 /* ListView.swift */,
 				D404F6162A432C1D0065E095 /* ListViewCell.swift */,
-				D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */,
-				D4DEA8352A4725AD006FB3DF /* DetailView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -261,6 +259,7 @@
 		D463D4842A41A95D00E37898 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8442A48F9D9006FB3DF /* Detail */,
 				D404F6052A42F6480065E095 /* List */,
 				D404F6042A42F63B0065E095 /* Tab */,
 				D463D46F2A419E4B00E37898 /* ViewController.swift */,
@@ -336,6 +335,15 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D4DEA8442A48F9D9006FB3DF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */,
+				D4DEA8352A4725AD006FB3DF /* DetailView.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

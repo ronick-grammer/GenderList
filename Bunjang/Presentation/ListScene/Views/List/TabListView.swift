@@ -34,6 +34,7 @@ final class TabListView: UIView {
     let disposeBag = DisposeBag()
     
     init() {
+        // TODO: Enum화 작업
         let tabInitialized = Observable<[String]>.just(["male", "female"])
         
         listPageView = ListPageView(
@@ -90,14 +91,17 @@ final class TabListView: UIView {
 
 extension TabListView: Bindable {
     func bind() {
+        // 탭 리스트 화면 구성
         output.columnStyle
             .bind(to: listPageView.rx.columnStyle)
             .disposed(by: disposeBag)
         
+        // 스와이프한 방향의 탭 선택
         output.selectedTab
             .bind(to: tabView.rx.selectedTab)
             .disposed(by: disposeBag)
         
+        // 탭 선택시 해당 리스트 화면으로 이동
         output.pageScrollTo
             .bind(to: listPageView.rx.selectedPage)
             .disposed(by: disposeBag)
