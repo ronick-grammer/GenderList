@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class TabView: UICollectionView {
+final class TabView: UICollectionView {
     
     typealias ViewModel = TabViewModel
     

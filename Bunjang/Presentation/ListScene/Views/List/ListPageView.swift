@@ -11,7 +11,7 @@ import RxCocoa
 
 typealias PageInfo = (prev: Int, current: Int)
 
-class ListPageView: UICollectionView {
+final class ListPageView: UICollectionView {
     
     typealias ViewModel = ListPageViewModel
     

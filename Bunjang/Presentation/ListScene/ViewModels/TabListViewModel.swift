@@ -7,7 +7,7 @@
 
 import RxSwift
 
-class TabListViewModel: ViewModelType {
+final class TabListViewModel: ViewModelType {
     
     struct Input {
         let columnStyleButtonTapped: Observable<Void>
