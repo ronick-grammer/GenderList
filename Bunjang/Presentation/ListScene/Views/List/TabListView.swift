@@ -37,7 +37,7 @@ class TabListView: UIView {
         let tabInitialized = Observable<[String]>.just(["male", "female"])
         
         listPageView = ListPageView(
-            optionButtonTapped: columnStyleButton.rx.tap.share(replay: 1),
+            optionButtonTapped: columnStyleButton.rx.tap.asObservable(),
             tabsInitialized: tabInitialized
         )
         
