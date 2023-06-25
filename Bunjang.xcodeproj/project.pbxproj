@@ -259,9 +259,9 @@
 		D463D4842A41A95D00E37898 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D4DEA8442A48F9D9006FB3DF /* Detail */,
 				D404F6052A42F6480065E095 /* List */,
 				D404F6042A42F63B0065E095 /* Tab */,
+				D4DEA8442A48F9D9006FB3DF /* Detail */,
 				D463D46F2A419E4B00E37898 /* ViewController.swift */,
 			);
 			path = Views;
