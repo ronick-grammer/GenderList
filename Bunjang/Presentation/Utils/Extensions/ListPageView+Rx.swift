@@ -32,8 +32,8 @@ extension Reactive where Base: ListPageView {
             let cell_1 = listPageView.cellForItem(at: IndexPath(row: 0, section: 0)) as? ListPageViewCell
             let cell_2 = listPageView.cellForItem(at: IndexPath(row: 1, section: 0)) as? ListPageViewCell
             
-            cell_1?.listView?.setColumnStyle(columnStyle: columnStyle)
-            cell_2?.listView?.setColumnStyle(columnStyle: columnStyle)
+            cell_1?.listView.setColumnStyle(columnStyle: columnStyle)
+            cell_2?.listView.setColumnStyle(columnStyle: columnStyle)
         }
     }
     

@@ -66,7 +66,7 @@ extension ListPageView: Bindable {
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
         { _, item, cell in
             cell.configure(columnStyle: self.viewModel.columnStyle, tabName: item)
-            cell.listView?.listViewDelegate = self.listViewDelegate
+            cell.listView.listViewDelegate = self.listViewDelegate
         }.disposed(by: disposeBag)
     }
 }
