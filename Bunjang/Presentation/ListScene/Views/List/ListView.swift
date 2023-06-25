@@ -97,6 +97,7 @@ extension ListView: Bindable {
             cell.configure(genderInfo: item)
         }.disposed(by: disposeBag)
         
+        // 디테일 성별 리스트 화면 이동
         rx.itemSelected
             .subscribe(onNext: { indexPath in
                 let detailView = DetailView()

@@ -10,6 +10,7 @@ import RxSwift
 
 extension Reactive where Base: UICollectionView {
     
+    /// 스크롤을 밑으로 끝까지 내렸을 경우의 Observable
     var scrolledToBottom: Observable<Void> {
         base.rx.didScroll.flatMap {
             Observable.create { observer -> Disposable in

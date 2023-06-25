@@ -10,12 +10,18 @@ import RxSwift
 final class ListViewModel: ViewModelType {
     
     struct Input {
+        /// 탭 화면(남자 or 여자) 리스트 초기화 이벤트
         let tabInitialized: PublishSubject<String>
+        
+        /// 스크롤을 맨 밑으로 내렸을 때 발생하는 이벤트
         let scrolledToBottom: Observable<Void>
+        
+        /// 새로고침 이벤트
         let didPullToRefresh: PublishSubject<Void>
     }
     
     struct Output {
+        /// 성별 리스트
         let genderList: BehaviorSubject<[Gender]>
     }
     

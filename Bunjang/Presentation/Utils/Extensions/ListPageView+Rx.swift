@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 
 extension Reactive where Base: ListPageView {
+    
+    /// 페이지 스와이프 Observable
     var pageSwiped: Observable<PageInfo> {
         base.rx.didScroll
             .map {
@@ -25,6 +27,7 @@ extension Reactive where Base: ListPageView {
     }
     
     //TODO: 수정 필요
+    /// 리스트 화면 구성 전환 Binder
     var columnStyle: Binder<ColumnStyle> {
         Binder(self.base) { listPageView, columnStyle in
             listPageView.viewModel.columnStyle = columnStyle
@@ -37,6 +40,8 @@ extension Reactive where Base: ListPageView {
         }
     }
     
+    
+    /// 선택한 페이지로 스크롤 이동 Binder
     var selectedPage: Binder<Int> {
         Binder(self.base) { ListPageView, pageIndex in
             let indexPath = IndexPath(row: pageIndex, section: 0)
