@@ -21,6 +21,8 @@ class ListPageViewModel: ViewModelType {
     
     var disposeBag = DisposeBag()
     
+    var columnStyle = ColumnStyle.two
+    
     func transform(input: Input) -> Output {
         let tabs = input.tabsInitialized
         

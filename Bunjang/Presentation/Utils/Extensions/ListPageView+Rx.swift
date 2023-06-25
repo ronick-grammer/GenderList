@@ -27,7 +27,7 @@ extension Reactive where Base: ListPageView {
     //TODO: 수정 필요
     var columnStyle: Binder<ColumnStyle> {
         Binder(self.base) { listPageView, columnStyle in
-            listPageView.columnStyle = columnStyle
+            listPageView.viewModel.columnStyle = columnStyle
             
             let cell_1 = listPageView.cellForItem(at: IndexPath(row: 0, section: 0)) as? ListPageViewCell
             let cell_2 = listPageView.cellForItem(at: IndexPath(row: 1, section: 0)) as? ListPageViewCell

@@ -28,8 +28,6 @@ class ListView: UICollectionView {
     
     var listViewDelegate: ListViewDelegate?
     
-    private var genderList: [Gender] = []
-    
     init(tab: String) {
         input = ViewModel.Input(
             tabInitialized: Observable<String>.just(tab)
@@ -94,13 +92,13 @@ extension ListView: Bindable {
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListViewCell.self))
         { index, item, cell in
             cell.configure(genderInfo: item)
-            self.genderList.append(item)
         }.disposed(by: disposeBag)
         
         rx.itemSelected
             .subscribe(onNext: { indexPath in
                 let detailView = DetailView()
-                detailView.configure(genderInfo: self.genderList[indexPath.row])
+                let genderInfo = try? self.output.genderList.value()[indexPath.row]
+                detailView.configure(genderInfo: genderInfo)
                 
                 let detailVC = DetailViewController(detailView: detailView)
                 self.listViewDelegate?.pushDetailViewController(detailVC: detailVC)
