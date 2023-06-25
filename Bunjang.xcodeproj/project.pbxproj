@@ -36,6 +36,7 @@
 		D4DEA82D2A46CB8A006FB3DF /* GenderListQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA82C2A46CB8A006FB3DF /* GenderListQuery.swift */; };
 		D4DEA82F2A46CBDD006FB3DF /* DefaultGenderListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA82E2A46CBDD006FB3DF /* DefaultGenderListRepository.swift */; };
 		D4DEA8312A46F34F006FB3DF /* GenderListUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8302A46F34F006FB3DF /* GenderListUsecase.swift */; };
+		D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8352A4725AD006FB3DF /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		D4DEA82C2A46CB8A006FB3DF /* GenderListQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListQuery.swift; sourceTree = "<group>"; };
 		D4DEA82E2A46CBDD006FB3DF /* DefaultGenderListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGenderListRepository.swift; sourceTree = "<group>"; };
 		D4DEA8302A46F34F006FB3DF /* GenderListUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListUsecase.swift; sourceTree = "<group>"; };
+		D4DEA8352A4725AD006FB3DF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		D404F5FC2A429BB30065E095 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D4DEA8322A47118D006FB3DF /* Network */,
 				D404F5FD2A429BBF0065E095 /* Repositories */,
 			);
 			path = Data;
@@ -164,6 +167,7 @@
 				D404F6142A432C130065E095 /* ListView.swift */,
 				D404F6162A432C1D0065E095 /* ListViewCell.swift */,
 				D4DEA81B2A46802E006FB3DF /* DetailViewController.swift */,
+				D4DEA8352A4725AD006FB3DF /* DetailView.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -309,6 +313,13 @@
 			path = Interfaces;
 			sourceTree = "<group>";
 		};
+		D4DEA8322A47118D006FB3DF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -439,6 +450,7 @@
 				D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */,
 				D4DEA8312A46F34F006FB3DF /* GenderListUsecase.swift in Sources */,
 				D4DEA8202A46C182006FB3DF /* ListViewModel.swift in Sources */,
+				D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */,
 				D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */,
 				D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */,
 				D404F6122A4302CC0065E095 /* ListPageViewCell.swift in Sources */,
