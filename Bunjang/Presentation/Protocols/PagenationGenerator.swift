@@ -12,4 +12,6 @@ protocol PagenationGenerator {
     var fetchStatus: FetchStatus { get set }
     
     mutating func next(fetch: Fetch, onCompletion: ((Element) -> Void)?)
+    
+    mutating func reset()
 }

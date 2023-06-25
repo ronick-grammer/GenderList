@@ -35,4 +35,9 @@ final class DefaultPagenationGenerator<T>: PagenationGenerator {
             onCompletion?(self.elements)
         }
     }
+    
+    func reset() {
+        page = 1
+        self.elements.removeAll()
+    }
 }

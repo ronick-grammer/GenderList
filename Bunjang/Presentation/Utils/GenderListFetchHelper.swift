@@ -46,5 +46,10 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
             genderList.onNext($0)
         }
     }
+    
+    func reset(genderType: String, genderList: BehaviorSubject<[Element]>) {
+        pagenationGenerator.reset()
+        fetch(genderType: genderType, genderList: genderList)
+    }
 }
 

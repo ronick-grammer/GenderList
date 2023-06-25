@@ -12,6 +12,7 @@ class ListViewModel: ViewModelType {
     struct Input {
         let tabInitialized: PublishSubject<String>
         let scrolledToBottom: Observable<Void>
+        let didPullToRefresh: PublishSubject<Void>
     }
     
     struct Output {
@@ -39,12 +40,17 @@ class ListViewModel: ViewModelType {
                 self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
             }).disposed(by: disposeBag)
         
-        
         input.scrolledToBottom
             .filter { self.fetchHelper.fetchStatus == .ready }
             .subscribe(onNext: {
                 self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
             }).disposed(by: disposeBag)
+        
+        input.didPullToRefresh
+            .subscribe(onNext: {
+                self.fetchHelper.reset(genderType: genderType, genderList: genderList)
+            }).disposed(by: disposeBag)
+            
         
         return Output(
             genderList: genderList
