@@ -20,23 +20,21 @@ class ListView: UICollectionView {
     
     let viewModel = ViewModel()
     
-    let input: ViewModel.Input
+    lazy var input = ViewModel.Input(
+        tabInitialized: PublishSubject<String>(),
+        scrolledToBottom: rx.scrolledToBottom
+    )
     
-    let output: ViewModel.Output
+    lazy var output = viewModel.transform(input: input)
     
     var disposeBag = DisposeBag()
     
     var listViewDelegate: ListViewDelegate?
     
-    init(tab: String) {
-        input = ViewModel.Input(
-            tabInitialized: Observable<String>.just(tab)
-        )
-        
-        output = viewModel.transform(input: input)
-        
+    var tabInitialzied = PublishSubject<String>()
+    
+    init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        
         setUp()
         bind()
     }
@@ -46,12 +44,7 @@ class ListView: UICollectionView {
     }
     
     private func setUp() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIWindow().screen.bounds.width / 2 - 15, height: 300)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        collectionViewLayout = layout
+        setColumnStyle(columnStyle: .two)
         
         dataSource = nil
         delegate = nil
@@ -59,28 +52,29 @@ class ListView: UICollectionView {
         register(ListViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
-    func configure(columnStyle: ColumnStyle) {
+    func configure(columnStyle: ColumnStyle, tabName: String) {
+        input.tabInitialized.onNext(tabName)
         setColumnStyle(columnStyle: columnStyle)
     }
     
     func setColumnStyle(columnStyle: ColumnStyle) {
+        let layout = UICollectionViewFlowLayout()
+        
         switch columnStyle {
         case .one:
-            let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: UIWindow().screen.bounds.width - 20, height: 200)
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            self.collectionViewLayout = layout
             
         case .two:
-            let layout = UICollectionViewFlowLayout()
             layout.itemSize = CGSize(width: UIWindow().screen.bounds.width / 2 - 15, height: 200)
             layout.minimumLineSpacing = 10
             layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-            self.collectionViewLayout = layout
         }
+        
+        self.collectionViewLayout = layout
     }
 }
 
