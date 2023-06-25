@@ -24,7 +24,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        navigationController?.navigationBar.topItem?.title = "List"
+        navigationController?.navigationBar.topItem?.title = "Gender List"
         
         tabListView.setListViewDelegate(listViewDelegate: self)
         setUp()
