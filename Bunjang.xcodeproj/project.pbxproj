@@ -42,6 +42,7 @@
 		D4DEA83D2A484397006FB3DF /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */; };
 		D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */; };
 		D4DEA8412A48D5F4006FB3DF /* GenderListFetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */; };
+		D4DEA8432A48F046006FB3DF /* TabView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,7 @@
 		D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStatus.swift; sourceTree = "<group>"; };
 		D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListFetchHelper.swift; sourceTree = "<group>"; };
+		D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabView+Rx.swift"; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -316,6 +318,7 @@
 				D4DEA8112A4485D1006FB3DF /* UICollectionView+Extension.swift */,
 				D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */,
 				D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */,
+				D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				D4DEA8222A46C330006FB3DF /* GenderList.swift in Sources */,
 				D404F6032A429D5B0065E095 /* TabViewCell.swift in Sources */,
 				D404F6082A42F65C0065E095 /* TabListView.swift in Sources */,
+				D4DEA8432A48F046006FB3DF /* TabView+Rx.swift in Sources */,
 				D404F6172A432C1D0065E095 /* ListViewCell.swift in Sources */,
 				D404F6012A429CA40065E095 /* TabView.swift in Sources */,
 				D4DEA8162A456E08006FB3DF /* TabViewModel.swift in Sources */,
