@@ -9,7 +9,7 @@ import UIKit
 
 class TabViewCell: UICollectionViewCell {
     
-    let tabTitleLabel: UILabel = {
+    private let tabTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .black
@@ -33,8 +33,14 @@ class TabViewCell: UICollectionViewCell {
         }
     }
     
-    func setTitle(_ title: String) {
+    func setTitle(_ title: String, isFirstTab: Bool) {
         tabTitleLabel.text = title
+        backgroundColor = .lightGray
+        changeTitleColor(to: isFirstTab ? .black : .gray)
+    }
+    
+    func changeTitleColor(to: UIColor) {
+        tabTitleLabel.textColor = to
     }
 }
 

@@ -23,18 +23,16 @@ class ListPageView: UICollectionView {
     
     let output: ViewModel.Output
     
-    let colorEvent = PublishSubject<[UIColor]>()
-    
     var disposeBag = DisposeBag()
     
     var columnStyle = ColumnStyle.two
     
     var listViewDelegate: ListViewDelegate?
     
-    init(optionButtonTapped: Observable<Void>) {
+    init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>) {
         
         self.input = ViewModel.Input(
-            optionButtonTapped: optionButtonTapped
+            tabsInitialized: tabsInitialized
         )
         
         self.output = viewModel.transform(input: input)
@@ -43,8 +41,6 @@ class ListPageView: UICollectionView {
         
         setUp()
         bind()
-        
-        colorEvent.onNext(colors)
     }
     
     required init?(coder: NSCoder) {
@@ -62,24 +58,17 @@ class ListPageView: UICollectionView {
         delegate = self
         
         register(ListPageViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        
-        setUpLayout()
-    }
-    
-    private func setUpLayout() {
-        
     }
 }
 
 extension ListPageView: Bindable {
     
     func bind() {
-        
-        colorEvent
+        output.tabs
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
-        { index, item, cell in
-            cell.configure(color: item, columnStyle: self.columnStyle)
-            cell.listView.listViewDelegate = self.listViewDelegate
+        { _, item, cell in
+            cell.configure(columnStyle: self.columnStyle, tabName: item)
+            cell.listView?.listViewDelegate = self.listViewDelegate
         }.disposed(by: disposeBag)
     }
 }
