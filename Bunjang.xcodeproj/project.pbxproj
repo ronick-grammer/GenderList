@@ -37,6 +37,9 @@
 		D4DEA82F2A46CBDD006FB3DF /* DefaultGenderListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA82E2A46CBDD006FB3DF /* DefaultGenderListRepository.swift */; };
 		D4DEA8312A46F34F006FB3DF /* GenderListUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8302A46F34F006FB3DF /* GenderListUsecase.swift */; };
 		D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8352A4725AD006FB3DF /* DetailView.swift */; };
+		D4DEA8382A482FBB006FB3DF /* PagenationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8372A482FBB006FB3DF /* PagenationGenerator.swift */; };
+		D4DEA83A2A483120006FB3DF /* DefaultPagenationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8392A483120006FB3DF /* DefaultPagenationGenerator.swift */; };
+		D4DEA83D2A484397006FB3DF /* UICollectionView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +76,9 @@
 		D4DEA82E2A46CBDD006FB3DF /* DefaultGenderListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGenderListRepository.swift; sourceTree = "<group>"; };
 		D4DEA8302A46F34F006FB3DF /* GenderListUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListUsecase.swift; sourceTree = "<group>"; };
 		D4DEA8352A4725AD006FB3DF /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		D4DEA8372A482FBB006FB3DF /* PagenationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagenationGenerator.swift; sourceTree = "<group>"; };
+		D4DEA8392A483120006FB3DF /* DefaultPagenationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPagenationGenerator.swift; sourceTree = "<group>"; };
+		D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Rx.swift"; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,6 +192,7 @@
 			children = (
 				D4DEA8102A4485AC006FB3DF /* Extensions */,
 				D4DEA81D2A46BD37006FB3DF /* ColumnStyle.swift */,
+				D4DEA8392A483120006FB3DF /* DefaultPagenationGenerator.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,6 +265,7 @@
 			children = (
 				D4DEA80C2A448396006FB3DF /* Bindable.swift */,
 				D4DEA80E2A4483AC006FB3DF /* ViewModelType.swift */,
+				D4DEA8372A482FBB006FB3DF /* PagenationGenerator.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -301,6 +309,7 @@
 			children = (
 				D4DEA8112A4485D1006FB3DF /* UICollectionView+Extension.swift */,
 				D4DEA8192A45FB10006FB3DF /* ListPageView+Rx.swift */,
+				D4DEA83C2A484397006FB3DF /* UICollectionView+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -446,11 +455,13 @@
 				D4DEA82F2A46CBDD006FB3DF /* DefaultGenderListRepository.swift in Sources */,
 				D4DEA80D2A448396006FB3DF /* Bindable.swift in Sources */,
 				D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */,
+				D4DEA83D2A484397006FB3DF /* UICollectionView+Rx.swift in Sources */,
 				D463D4702A419E4B00E37898 /* ViewController.swift in Sources */,
 				D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */,
 				D4DEA8312A46F34F006FB3DF /* GenderListUsecase.swift in Sources */,
 				D4DEA8202A46C182006FB3DF /* ListViewModel.swift in Sources */,
 				D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */,
+				D4DEA83A2A483120006FB3DF /* DefaultPagenationGenerator.swift in Sources */,
 				D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */,
 				D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */,
 				D404F6122A4302CC0065E095 /* ListPageViewCell.swift in Sources */,
@@ -459,6 +470,7 @@
 				D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */,
 				D463D46E2A419E4B00E37898 /* SceneDelegate.swift in Sources */,
 				D404F60A2A42FAF70065E095 /* ListPageView.swift in Sources */,
+				D4DEA8382A482FBB006FB3DF /* PagenationGenerator.swift in Sources */,
 				D404F6152A432C130065E095 /* ListView.swift in Sources */,
 				D4DEA82D2A46CB8A006FB3DF /* GenderListQuery.swift in Sources */,
 			);
