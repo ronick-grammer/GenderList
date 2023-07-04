@@ -36,15 +36,20 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
     }
     
     func fetch(genderType: String, genderList: BehaviorSubject<[Element]>) {
-        self.pagenationGenerator.next { page, limit, completion in
+        
+        self.pagenationGenerator.next(fetch: { page, limit, completion, error in
             let query = GenderListQuery(page: page, results: limit, seed: self.seed)
             self.genderListUsecase.get(genderListQuery: query)
                 .map { $0.results.filter { genderList in genderList.gender == genderType } }
-                .subscribe(onNext: { completion($0) })
-                .disposed(by: self.disposeBag)
-        } onCompletion: {
+                .subscribe(
+                    onNext: { completion($0) },
+                    onError: { error($0) }
+                ).disposed(by: self.disposeBag)
+        }, onCompletion: {
             genderList.onNext($0)
-        }
+        }, onError: {
+            genderList.onError($0)
+        })
     }
     
     func reset(genderType: String, genderList: BehaviorSubject<[Element]>) {

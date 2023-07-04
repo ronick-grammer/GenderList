@@ -20,7 +20,8 @@ protocol PagenationGenerator {
     /// - Parameters:
     ///   - fetch: 데이터 패칭을 실행하는 클로저
     ///   - onCompletion: 데이터 패칭 이후 실행할 클로저
-    mutating func next(fetch: Fetch, onCompletion: ((Element) -> Void)?)
+    ///   - onError: 에러 발생 시 실행할 클로저
+    mutating func next(fetch: Fetch, onCompletion: ((Element) -> Void)?, onError: ((Error) -> Void)?)
     
     
     /// 페이지네이션 데이터를 초기화 합니다
