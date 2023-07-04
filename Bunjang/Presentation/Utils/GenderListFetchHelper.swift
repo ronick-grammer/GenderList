@@ -12,7 +12,7 @@ protocol GenderListPagenationFetchable {
     
     var disposeBag: DisposeBag { get }
     
-    func fetch(genderType: String, genderList: BehaviorSubject<[Element]>)
+    func fetch(genderType: String) -> Observable<[Element]>
 }
 
 struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
@@ -35,8 +35,8 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
         self.genderListUsecase = usecase
     }
     
-    func fetch(genderType: String, genderList: BehaviorSubject<[Element]>) {
-        
+    func fetch(genderType: String) -> Observable<[Element]> {
+        let result = PublishSubject<[Element]>()
         self.pagenationGenerator.next(fetch: { page, limit, completion, error in
             let query = GenderListQuery(page: page, results: limit, seed: self.seed)
             self.genderListUsecase.get(genderListQuery: query)
@@ -46,15 +46,17 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
                     onError: { error($0) }
                 ).disposed(by: self.disposeBag)
         }, onCompletion: {
-            genderList.onNext($0)
+            result.onNext($0)
         }, onError: {
-            genderList.onError($0)
+            result.onError($0)
         })
+        
+        return result.asObservable()
     }
     
-    func reset(genderType: String, genderList: BehaviorSubject<[Element]>) {
+    func reset(genderType: String) -> Observable<[Element]> {
         pagenationGenerator.reset()
-        fetch(genderType: genderType, genderList: genderList)
+        return fetch(genderType: genderType)
     }
 }
 

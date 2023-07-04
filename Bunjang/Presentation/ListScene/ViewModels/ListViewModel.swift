@@ -23,6 +23,9 @@ final class ListViewModel: ViewModelType {
     struct Output {
         /// 성별 리스트
         let genderList: BehaviorSubject<[Gender]>
+        
+        /// 성별 리스트 에러
+        let genderListError: Observable<String>
     }
     
     var disposeBag = DisposeBag()
@@ -38,28 +41,40 @@ final class ListViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         
         let genderList = BehaviorSubject<[Gender]>.init(value: [])
+        let genderListError = PublishSubject<String>()
         
         var genderType = ""
+        
         input.tabInitialized
-            .subscribe(onNext: { gender in
-                genderType = gender
-                self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
+            .flatMap {
+                genderType = $0
+                return self.fetchHelper.fetch(genderType: $0)
+            }.subscribe(onNext: { list in
+                genderList.onNext(list)
+            }, onError: {
+                genderListError.onNext($0.localizedDescription)
             }).disposed(by: disposeBag)
         
         input.scrolledToBottom
             .filter { self.fetchHelper.fetchStatus == .ready }
-            .subscribe(onNext: {
-                self.fetchHelper.fetch(genderType: genderType, genderList: genderList)
+            .flatMap { self.fetchHelper.fetch(genderType: genderType) }
+            .subscribe(onNext: { list in
+                genderList.onNext(list)
+            }, onError: {
+                genderListError.onNext($0.localizedDescription)
             }).disposed(by: disposeBag)
         
         input.didPullToRefresh
-            .subscribe(onNext: {
-                self.fetchHelper.reset(genderType: genderType, genderList: genderList)
+            .flatMap { self.fetchHelper.fetch(genderType: genderType) }
+            .subscribe(onNext: { list in
+                genderList.onNext(list)
+            }, onError: {
+                genderListError.onNext($0.localizedDescription)
             }).disposed(by: disposeBag)
-            
         
         return Output(
-            genderList: genderList
+            genderList: genderList,
+            genderListError: genderListError
         )
     }
 }

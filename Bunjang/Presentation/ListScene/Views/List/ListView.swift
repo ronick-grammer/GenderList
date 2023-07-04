@@ -97,6 +97,12 @@ extension ListView: Bindable {
             cell.configure(genderInfo: item)
         }.disposed(by: disposeBag)
         
+        output.genderListError
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] message in
+                self?.makeToast("  리스트를 불러오는데 실패하였습니다. 다시 시도해 주세요        ", withDuration: 2, delay: 1.5)
+            }.disposed(by: disposeBag)
+        
         // 디테일 성별 리스트 화면 이동
         rx.itemSelected
             .subscribe(onNext: { indexPath in
