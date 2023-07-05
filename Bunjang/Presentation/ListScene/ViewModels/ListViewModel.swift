@@ -65,7 +65,7 @@ final class ListViewModel: ViewModelType {
             }).disposed(by: disposeBag)
         
         input.didPullToRefresh
-            .flatMap { self.fetchHelper.fetch(genderType: genderType) }
+            .flatMap { self.fetchHelper.reset(genderType: genderType) }
             .subscribe(onNext: { list in
                 genderList.onNext(list)
             }, onError: {
