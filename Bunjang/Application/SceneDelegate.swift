@@ -16,9 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let mainViewController = ViewController()
+        let initialViewController = InitialViewController()
         
-        let nav = UINavigationController(rootViewController: mainViewController)
+        let nav = UINavigationController(rootViewController: initialViewController)
         nav.navigationBar.backgroundColor = .clear
         nav.navigationBar.isTranslucent = false
         window?.rootViewController = nav

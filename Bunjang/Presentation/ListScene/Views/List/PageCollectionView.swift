@@ -1,5 +1,5 @@
 //
-//  ListPageView.swift
+//  PageCollectionView.swift
 //  Bunjang
 //
 //  Created by Ronick on 6/21/23.
@@ -11,7 +11,7 @@ import RxCocoa
 
 typealias PageInfo = (prev: Int, current: Int)
 
-final class ListPageView: UICollectionView {
+final class PageCollectionView: UICollectionView {
     
     typealias ViewModel = ListPageViewModel
     
@@ -63,15 +63,15 @@ final class ListPageView: UICollectionView {
         dataSource = nil
         delegate = self
         
-        register(ListPageViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        register(PageCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
 }
 
-extension ListPageView: Bindable {
+extension PageCollectionView: Bindable {
     
     func bind() {
         output.tabs
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: PageCollectionViewCell.self))
         { _, item, cell in
             cell.configure(columnStyle: self.viewModel.columnStyle, tabName: item)
             cell.setListViewDelegate(listViewDelegate: self.listViewDelegate)
@@ -81,7 +81,7 @@ extension ListPageView: Bindable {
     }
 }
 
-extension ListPageView: UICollectionViewDelegateFlowLayout {
+extension PageCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIWindow().screen.bounds.width, height: bounds.height)
     }

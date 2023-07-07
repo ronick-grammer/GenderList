@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class TabView: UICollectionView {
+final class TabCollectionView: UICollectionView {
     
     typealias ViewModel = TabViewModel
     
@@ -49,15 +49,15 @@ final class TabView: UICollectionView {
         dataSource = nil
         delegate = nil
         
-        register(TabViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        register(TabCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
 }
 
-extension TabView: Bindable {
+extension TabCollectionView: Bindable {
     
     func bind() {
         output.tabs
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabViewCell.self))
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabCollectionViewCell.self))
         { index, item, cell in
             cell.setTitle(item, isFirstTab: index == 0)
         }.disposed(by: disposeBag)

@@ -1,5 +1,5 @@
 //
-//  ListViewCell.swift
+//  ListCollectionViewCell.swift
 //  Bunjang
 //
 //  Created by Ronick on 6/21/23.
@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-final class ListViewCell: UICollectionViewCell {
+final class ListCollectionViewCell: UICollectionViewCell {
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()

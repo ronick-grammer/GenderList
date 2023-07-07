@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-extension Reactive where Base: ListPageView {
+extension Reactive where Base: PageCollectionView {
     
     /// 페이지 스와이프 Observable
     var pageSwiped: Observable<PageInfo> {
@@ -32,11 +32,11 @@ extension Reactive where Base: ListPageView {
         Binder(self.base) { listPageView, columnStyle in
             listPageView.viewModel.columnStyle = columnStyle
             
-            let cell_1 = listPageView.cellForItem(at: IndexPath(row: 0, section: 0)) as? ListPageViewCell
-            let cell_2 = listPageView.cellForItem(at: IndexPath(row: 1, section: 0)) as? ListPageViewCell
+            let cell_1 = listPageView.cellForItem(at: IndexPath(row: 0, section: 0)) as? PageCollectionViewCell
+            let cell_2 = listPageView.cellForItem(at: IndexPath(row: 1, section: 0)) as? PageCollectionViewCell
             
-            cell_1?.listView.setColumnStyle(columnStyle: columnStyle)
-            cell_2?.listView.setColumnStyle(columnStyle: columnStyle)
+            cell_1?.listCollectionView.setColumnStyle(columnStyle: columnStyle)
+            cell_2?.listCollectionView.setColumnStyle(columnStyle: columnStyle)
         }
     }
     

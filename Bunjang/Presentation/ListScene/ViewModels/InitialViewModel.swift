@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  InitialViewModel.swift
 //  Bunjang
 //
 //  Created by RONICK on 2023/07/05.
@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class MainViewModel: ViewModelType {
+class InitialViewModel: ViewModelType {
     
     struct Input {
         let selectButtonTapped: Observable<Void>
