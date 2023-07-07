@@ -11,14 +11,12 @@ final class DefaultPagenationGenerator<T>: PagenationGenerator {
     
     typealias Element = Array<T>
     
-    
     typealias Fetch = (
         _ page: Int,
         _ limit: Int,
         _ completion: @escaping (_ result: Element) -> Void,
         _ error: @escaping (_ error: Error) -> Void
     ) -> Void
-    
     
     var page: Int
     let limit: Int
@@ -49,5 +47,14 @@ final class DefaultPagenationGenerator<T>: PagenationGenerator {
     func reset() {
         page = 1
         self.elements.removeAll()
+    }
+    
+    func remove(indexes: [Int]) -> Element {
+        elements = elements
+            .enumerated()
+            .filter { !indexes.contains($0.offset) }
+            .map { $0.element }
+        
+        return elements
     }
 }

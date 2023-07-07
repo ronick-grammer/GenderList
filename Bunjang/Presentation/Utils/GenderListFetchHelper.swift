@@ -58,5 +58,9 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
         pagenationGenerator.reset()
         return fetch(genderType: genderType)
     }
+    
+    func remove(at indexes: [Int]) -> [Element] {
+        pagenationGenerator.remove(indexes: indexes)
+    }
 }
 
