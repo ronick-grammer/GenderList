@@ -1,5 +1,5 @@
 //
-//  ListView.swift
+//  ListCollectionView.swift
 //  Bunjang
 //
 //  Created by Ronick on 6/21/23.
@@ -12,7 +12,7 @@ protocol ListViewDelegate {
     func pushDetailViewController(detailVC: DetailViewController)
 }
 
-final class ListView: UICollectionView {
+final class ListCollectionView: UICollectionView {
     
     private let cellIdentifier = "ListViewCell"
     
@@ -56,7 +56,7 @@ final class ListView: UICollectionView {
         dataSource = nil
         delegate = nil
         
-        register(ListViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        register(ListCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     func configure(columnStyle: ColumnStyle, tabName: String) {
@@ -102,14 +102,13 @@ final class ListView: UICollectionView {
     }
 }
 
-extension ListView: Bindable {
+extension ListCollectionView: Bindable {
     
     func bind() {
         
         output.genderList
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListViewCell.self))
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListCollectionViewCell.self))
         { index, item, cell in
-//            cell.configure(genderInfo: item, isSelected: self.viewModel.selectedItemIndexes.contains(index))
             cell.configure(genderInfo: item, isSelected: self.viewModel.isSelected(index: index))
         }.disposed(by: disposeBag)
         
@@ -123,7 +122,7 @@ extension ListView: Bindable {
         output.markItem
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { indexPath in
-                let cell = self.cellForItem(at: indexPath) as! ListViewCell
+                let cell = self.cellForItem(at: indexPath) as! ListCollectionViewCell
                 cell.itemTapped()
             }).disposed(by: disposeBag)
         
@@ -141,11 +140,8 @@ extension ListView: Bindable {
         output.cancelSelectedList
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { _ in
-//                self.viewModel.selectedItemIndexes.removeAll()
                 self.viewModel.removeAllSelectedItems()
                 self.reloadData()
             }).disposed(by: disposeBag)
     }
 }
-
-

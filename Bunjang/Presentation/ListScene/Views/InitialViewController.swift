@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InitialViewController.swift
 //  Bunjang
 //
 //  Created by Ronick on 6/20/23.
@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 import RxSwift
 
-final class ViewController: UIViewController {
+final class InitialViewController: UIViewController {
 
-    lazy var tabListView =  TabListView(
+    lazy var tabListView =  TabPageView(
         selectBarButtonTapped: selectBarButton.rx.tap
             .scan(false, accumulator: { prev, _ in
                 !prev
@@ -46,7 +46,7 @@ final class ViewController: UIViewController {
         return barButton
     }()
     
-    typealias ViewModel = MainViewModel
+    typealias ViewModel = InitialViewModel
     
     let viewModel = ViewModel()
     
@@ -87,7 +87,7 @@ final class ViewController: UIViewController {
     }
 }
 
-extension ViewController: Bindable {
+extension InitialViewController: Bindable {
     func bind() {
         output.selectButtonTitle
             .bind(to: selectBarButton.rx.title)
@@ -95,7 +95,7 @@ extension ViewController: Bindable {
     }
 }
 
-extension ViewController: ListViewDelegate {
+extension InitialViewController: ListViewDelegate {
     func pushDetailViewController(detailVC: DetailViewController) {
         navigationController?.pushViewController(detailVC, animated: true)
     }

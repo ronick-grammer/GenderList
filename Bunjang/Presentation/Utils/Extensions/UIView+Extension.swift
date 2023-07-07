@@ -10,7 +10,6 @@ import SnapKit
 
 extension UIView {
     func makeToast(_ message : String, withDuration: Double, delay: Double) {
-//        let toastLabel = UILabel(frame: CGRect(x: frame.size.width/2 - 75, y: frame.size.height-100, width: 150, height: 35))
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         toastLabel.textColor = UIColor.white

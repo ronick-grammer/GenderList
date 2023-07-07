@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TabViewCell: UICollectionViewCell {
+final class TabCollectionViewCell: UICollectionViewCell {
     
     private let tabTitleLabel: UILabel = {
         let label = UILabel()

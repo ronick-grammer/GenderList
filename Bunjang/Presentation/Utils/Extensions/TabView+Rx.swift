@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-extension Reactive where Base: TabView {
+extension Reactive where Base: TabCollectionView {
     
     /// 탭 버튼 클릭 Observable
     var tabButtonTapped: Observable<PageInfo> {
@@ -30,10 +30,10 @@ extension Reactive where Base: TabView {
     /// 탭 버튼 선택 처리 Binder
     var selectedTab: Binder<PageInfo> {
         Binder(self.base) { tabView, pageInfo in
-            let prevCell = tabView.cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabViewCell
+            let prevCell = tabView.cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabCollectionViewCell
             prevCell?.changeTitleColor(to: .gray)
             
-            let currentCell = tabView.cellForItem(at: IndexPath(row: pageInfo.current, section: 0)) as? TabViewCell
+            let currentCell = tabView.cellForItem(at: IndexPath(row: pageInfo.current, section: 0)) as? TabCollectionViewCell
             currentCell?.changeTitleColor(to: .black)
         }
     }
