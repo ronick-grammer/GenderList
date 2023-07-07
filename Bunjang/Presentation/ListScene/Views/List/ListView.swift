@@ -23,7 +23,10 @@ final class ListView: UICollectionView {
     lazy var input = ViewModel.Input(
         tabInitialized: PublishSubject<String>(),
         scrolledToBottom: rx.scrolledToBottom,
-        didPullToRefresh: PublishSubject<Void>()
+        didPullToRefresh: PublishSubject<Void>(),
+        itemTapped: rx.itemSelected.asObservable(),
+        selectButtonTapped: PublishSubject<Observable<Bool>>(),
+        removeBarButtonTapped: PublishSubject<Observable<Void>>()
     )
     
     lazy var output = viewModel.transform(input: input)
@@ -31,7 +34,7 @@ final class ListView: UICollectionView {
     var disposeBag = DisposeBag()
     
     var listViewDelegate: ListViewDelegate?
-
+    
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
@@ -81,6 +84,18 @@ final class ListView: UICollectionView {
         self.collectionViewLayout = layout
     }
     
+    func setListViewDelegate(listViewDelegate: ListViewDelegate?) {
+        self.listViewDelegate = listViewDelegate
+    }
+    
+    func setSelectButtonTapped(selectButtonTapped: Observable<Bool>) {
+        input.selectButtonTapped.onNext(selectButtonTapped)
+    }
+    
+    func setRemoveBarButtonTapped(removeBarButtonTapped: Observable<Void>) {
+        input.removeBarButtonTapped.onNext(removeBarButtonTapped)
+    }
+    
     @objc func startRefresh() {
         input.didPullToRefresh.onNext(Void())
         refreshControl?.endRefreshing()
@@ -94,7 +109,8 @@ extension ListView: Bindable {
         output.genderList
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListViewCell.self))
         { index, item, cell in
-            cell.configure(genderInfo: item)
+//            cell.configure(genderInfo: item, isSelected: self.viewModel.selectedItemIndexes.contains(index))
+            cell.configure(genderInfo: item, isSelected: self.viewModel.isSelected(index: index))
         }.disposed(by: disposeBag)
         
         output.genderListError
@@ -103,15 +119,33 @@ extension ListView: Bindable {
                 self?.makeToast("  리스트를 불러오는데 실패하였습니다. 다시 시도해 주세요        ", withDuration: 2, delay: 1.5)
             }.disposed(by: disposeBag)
         
-        // 디테일 성별 리스트 화면 이동
-        rx.itemSelected
+        // 선택한 리스트 마킹 처리
+        output.markItem
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { indexPath in
+                let cell = self.cellForItem(at: indexPath) as! ListViewCell
+                cell.itemTapped()
+            }).disposed(by: disposeBag)
+        
+        // 디테일 성별 리스트 화면 이동
+        output.moveToDetail
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { genderInfo in
                 let detailView = DetailView()
-                let genderInfo = try? self.output.genderList.value()[indexPath.row]
                 detailView.configure(genderInfo: genderInfo)
                 
                 let detailVC = DetailViewController(detailView: detailView)
                 self.listViewDelegate?.pushDetailViewController(detailVC: detailVC)
             }).disposed(by: disposeBag)
+        
+        output.cancelSelectedList
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { _ in
+//                self.viewModel.selectedItemIndexes.removeAll()
+                self.viewModel.removeAllSelectedItems()
+                self.reloadData()
+            }).disposed(by: disposeBag)
     }
 }
+
+

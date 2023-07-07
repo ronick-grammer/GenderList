@@ -18,6 +18,15 @@ final class ListViewModel: ViewModelType {
         
         /// 새로고침 이벤트
         let didPullToRefresh: PublishSubject<Void>
+        
+        /// 리스트 아이템 클릭 이벤트
+        let itemTapped: Observable<IndexPath>
+        
+        /// 선택 버튼 클릭 이벤트
+        var selectButtonTapped: PublishSubject<Observable<Bool>>
+        
+        /// 제거 버튼 클릭 이벤트
+        var removeBarButtonTapped: PublishSubject<Observable<Void>>
     }
     
     struct Output {
@@ -26,55 +35,46 @@ final class ListViewModel: ViewModelType {
         
         /// 성별 리스트 에러
         let genderListError: Observable<String>
+                
+        /// 선택된 리스트 취소
+        let cancelSelectedList: Observable<Void>
+        
+        /// 선택한 아이템 마킹 처리
+        let markItem: Observable<IndexPath>
+        
+        /// 선택한 아이템의 상세화면 이동
+        let moveToDetail: Observable<Gender?>
     }
     
     var disposeBag = DisposeBag()
         
-    private let fetchHelper: DefaultGenderListFetchHelper
+    private let listViewOutputHelper: ListViewOutput
     
-    init(usecase: GenderListUsecase = DefaultGenderListUsecase(
-        genderListRepository: DefaultGenderListRepository(service: DefaultNetworkService()))
-    ) {
-        self.fetchHelper = DefaultGenderListFetchHelper(usecase: usecase)
+    init(outputHelper: ListViewOutput = ListViewOutputHelper()) {
+        listViewOutputHelper = outputHelper
     }
-    
+        
     func transform(input: Input) -> Output {
-        
-        let genderList = BehaviorSubject<[Gender]>.init(value: [])
-        let genderListError = PublishSubject<String>()
-        
-        var genderType = ""
-        
-        input.tabInitialized
-            .flatMap {
-                genderType = $0
-                return self.fetchHelper.fetch(genderType: $0)
-            }.subscribe(onNext: { list in
-                genderList.onNext(list)
-            }, onError: {
-                genderListError.onNext($0.localizedDescription)
-            }).disposed(by: disposeBag)
-        
-        input.scrolledToBottom
-            .filter { self.fetchHelper.fetchStatus == .ready }
-            .flatMap { self.fetchHelper.fetch(genderType: genderType) }
-            .subscribe(onNext: { list in
-                genderList.onNext(list)
-            }, onError: {
-                genderListError.onNext($0.localizedDescription)
-            }).disposed(by: disposeBag)
-        
-        input.didPullToRefresh
-            .flatMap { self.fetchHelper.reset(genderType: genderType) }
-            .subscribe(onNext: { list in
-                genderList.onNext(list)
-            }, onError: {
-                genderListError.onNext($0.localizedDescription)
-            }).disposed(by: disposeBag)
+        let genderListOutput = listViewOutputHelper.createGenderListOutput(input: input)
+        let selectionEventOutput = listViewOutputHelper.createSelectionEventOutput(
+            input: input,
+            genderList: genderListOutput.genderList
+        )
         
         return Output(
-            genderList: genderList,
-            genderListError: genderListError
+            genderList: genderListOutput.genderList,
+            genderListError: genderListOutput.genderListError,
+            cancelSelectedList: selectionEventOutput.cancelSelectedList,
+            markItem: selectionEventOutput.markItem,
+            moveToDetail: selectionEventOutput.moveToDetail
         )
+    }
+    
+    func removeAllSelectedItems() {
+        listViewOutputHelper.removeAllSelectedItems()
+    }
+    
+    func isSelected(index: Int) -> Bool {
+        listViewOutputHelper.selectedItemIndexes.contains(index)
     }
 }

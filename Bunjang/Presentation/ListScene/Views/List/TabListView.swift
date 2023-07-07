@@ -33,13 +33,15 @@ final class TabListView: UIView {
     
     let disposeBag = DisposeBag()
     
-    init() {
+    init(selectBarButtonTapped: Observable<Bool>, removeBarButtonTapped: Observable<Void>) {
         // TODO: Enum화 작업
         let tabInitialized = Observable<[String]>.just(["male", "female"])
         
         listPageView = ListPageView(
             optionButtonTapped: columnStyleButton.rx.tap.asObservable(),
-            tabsInitialized: tabInitialized
+            tabsInitialized: tabInitialized,
+            selectBarButtonTapped: selectBarButtonTapped,
+            removeBarButtonTapped: removeBarButtonTapped
         )
         
         tabView = TabView(
@@ -65,6 +67,7 @@ final class TabListView: UIView {
     }
     
     private func setUp() {
+        
         addSubview(tabView)
         tabView.snp.makeConstraints {
             $0.leading.trailing.top.equalToSuperview()

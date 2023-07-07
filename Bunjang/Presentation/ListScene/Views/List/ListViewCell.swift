@@ -35,6 +35,14 @@ final class ListViewCell: UICollectionViewCell {
         return label
     }()
     
+    private let checkImage: UIImageView = {
+        let imageView = UIImageView()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        imageView.image = UIImage(systemName: "checkmark.circle.fill", withConfiguration: configuration)
+        
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
@@ -47,8 +55,8 @@ final class ListViewCell: UICollectionViewCell {
     private func setUp() {
         contentView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints {
-            $0.leading.trailing.top.equalToSuperview()
-            $0.height.equalTo(150)
+            $0.centerX.top.equalToSuperview()
+            $0.height.equalTo(125)
         }
         
         contentView.addSubview(nameLabel)
@@ -62,15 +70,28 @@ final class ListViewCell: UICollectionViewCell {
             $0.top.equalTo(nameLabel.snp.bottom)
             $0.centerX.equalTo(profileImageView)
         }
+        
+        contentView.addSubview(checkImage)
+        checkImage.snp.makeConstraints {
+            $0.top.trailing.equalTo(profileImageView)
+        }
+        
+        checkImage.isHidden = true
     }
     
-    func configure(genderInfo: Gender) {
+    func configure(genderInfo: Gender, isSelected: Bool) {
         let profileImageUrl = URL(string: genderInfo.picture.large)
         
         profileImageView.kf.indicatorType = .activity
         profileImageView.kf.setImage(with: profileImageUrl)
         nameLabel.text = genderInfo.name.first + genderInfo.name.last
         emailLabel.text = genderInfo.email
+        
+        checkImage.isHidden = !isSelected
+    }
+    
+    func itemTapped() {
+        checkImage.isHidden = !checkImage.isHidden
     }
 }
 

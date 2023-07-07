@@ -27,13 +27,21 @@ final class ListPageView: UICollectionView {
     
     var listViewDelegate: ListViewDelegate?
     
-    init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>) {
+    var selectBarButtonTapped: Observable<Bool>
+    
+    var removeBarButtonTapped: Observable<Void>
+
+    init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>, selectBarButtonTapped: Observable<Bool>, removeBarButtonTapped: Observable<Void>) {
         
         self.input = ViewModel.Input(
             tabsInitialized: tabsInitialized
         )
         
         self.output = viewModel.transform(input: input)
+        
+        self.selectBarButtonTapped = selectBarButtonTapped
+        
+        self.removeBarButtonTapped = removeBarButtonTapped
         
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
@@ -66,7 +74,9 @@ extension ListPageView: Bindable {
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListPageViewCell.self))
         { _, item, cell in
             cell.configure(columnStyle: self.viewModel.columnStyle, tabName: item)
-            cell.listView.listViewDelegate = self.listViewDelegate
+            cell.setListViewDelegate(listViewDelegate: self.listViewDelegate)
+            cell.setSelectButtonTapped(selectButtonTapped: self.selectBarButtonTapped)
+            cell.setRemoveBarButtonTapped(removeBarButtonTapped: self.removeBarButtonTapped)
         }.disposed(by: disposeBag)
     }
 }

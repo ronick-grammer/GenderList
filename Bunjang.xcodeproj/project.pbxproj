@@ -20,6 +20,8 @@
 		D463D4702A419E4B00E37898 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D46F2A419E4B00E37898 /* ViewController.swift */; };
 		D463D4752A419E4C00E37898 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D463D4742A419E4C00E37898 /* Assets.xcassets */; };
 		D463D4782A419E4C00E37898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D463D4762A419E4C00E37898 /* LaunchScreen.storyboard */; };
+		D485DC222A57ECE400243487 /* ListViewOutputHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485DC212A57ECE400243487 /* ListViewOutputHelper.swift */; };
+		D485DC252A57ED9A00243487 /* ListViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D485DC242A57ED9A00243487 /* ListViewOutput.swift */; };
 		D49B50E82A53F8C70081FF9D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49B50E72A53F8C70081FF9D /* UIView+Extension.swift */; };
 		D4DEA80D2A448396006FB3DF /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA80C2A448396006FB3DF /* Bindable.swift */; };
 		D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA80E2A4483AC006FB3DF /* ViewModelType.swift */; };
@@ -44,6 +46,7 @@
 		D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */; };
 		D4DEA8412A48D5F4006FB3DF /* GenderListFetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */; };
 		D4DEA8432A48F046006FB3DF /* TabView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */; };
+		D4FCE4792A55229100D60C20 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE4782A55229100D60C20 /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,8 @@
 		D463D4742A419E4C00E37898 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D463D4772A419E4C00E37898 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D463D4792A419E4C00E37898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D485DC212A57ECE400243487 /* ListViewOutputHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewOutputHelper.swift; sourceTree = "<group>"; };
+		D485DC242A57ED9A00243487 /* ListViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewOutput.swift; sourceTree = "<group>"; };
 		D49B50E72A53F8C70081FF9D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		D4DEA80C2A448396006FB3DF /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		D4DEA80E2A4483AC006FB3DF /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 		D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStatus.swift; sourceTree = "<group>"; };
 		D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListFetchHelper.swift; sourceTree = "<group>"; };
 		D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabView+Rx.swift"; sourceTree = "<group>"; };
+		D4FCE4782A55229100D60C20 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		EBEE1FCA5068951E473C2627 /* Pods-Bunjang.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bunjang.release.xcconfig"; path = "Target Support Files/Pods-Bunjang/Pods-Bunjang.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +128,8 @@
 		D404F5FB2A429BAD0065E095 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D485DC202A57ECBF00243487 /* OutputHelpers */,
+				D4FCE4782A55229100D60C20 /* MainViewModel.swift */,
 				D4DEA8172A45AFD2006FB3DF /* TabListViewModel.swift */,
 				D4DEA8132A44933D006FB3DF /* ListPageViewModel.swift */,
 				D4DEA8152A456E08006FB3DF /* TabViewModel.swift */,
@@ -312,6 +320,23 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		D485DC202A57ECBF00243487 /* OutputHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				D485DC232A57ED2A00243487 /* OutputProtocols */,
+				D485DC212A57ECE400243487 /* ListViewOutputHelper.swift */,
+			);
+			path = OutputHelpers;
+			sourceTree = "<group>";
+		};
+		D485DC232A57ED2A00243487 /* OutputProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				D485DC242A57ED9A00243487 /* ListViewOutput.swift */,
+			);
+			path = OutputProtocols;
+			sourceTree = "<group>";
+		};
 		D4DEA8102A4485AC006FB3DF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,8 +480,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FCE4792A55229100D60C20 /* MainViewModel.swift in Sources */,
 				D4DEA82A2A46C9BA006FB3DF /* GenderListRepository.swift in Sources */,
 				D4DEA8242A46C5A6006FB3DF /* NetworkService.swift in Sources */,
+				D485DC252A57ED9A00243487 /* ListViewOutput.swift in Sources */,
 				D4DEA8182A45AFD2006FB3DF /* TabListViewModel.swift in Sources */,
 				D4DEA8222A46C330006FB3DF /* GenderList.swift in Sources */,
 				D404F6032A429D5B0065E095 /* TabViewCell.swift in Sources */,
@@ -483,6 +510,7 @@
 				D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */,
 				D463D46C2A419E4B00E37898 /* AppDelegate.swift in Sources */,
 				D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */,
+				D485DC222A57ECE400243487 /* ListViewOutputHelper.swift in Sources */,
 				D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */,
 				D463D46E2A419E4B00E37898 /* SceneDelegate.swift in Sources */,
 				D404F60A2A42FAF70065E095 /* ListPageView.swift in Sources */,

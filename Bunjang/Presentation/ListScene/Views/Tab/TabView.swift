@@ -51,8 +51,6 @@ final class TabView: UICollectionView {
         
         register(TabViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
-    
-    
 }
 
 extension TabView: Bindable {

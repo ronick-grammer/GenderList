@@ -33,8 +33,16 @@ final class ListPageViewCell: UICollectionViewCell {
         listView.configure(columnStyle: columnStyle, tabName: tabName)
     }
     
-    func changeColumnStyle(columnStyle: ColumnStyle) {
-        listView.setColumnStyle(columnStyle: columnStyle)
+    func setListViewDelegate(listViewDelegate: ListViewDelegate?) {
+        listView.setListViewDelegate(listViewDelegate: listViewDelegate)
+    }
+    
+    func setSelectButtonTapped(selectButtonTapped: Observable<Bool>) {
+        listView.setSelectButtonTapped(selectButtonTapped: selectButtonTapped)
+    }
+    
+    func setRemoveBarButtonTapped(removeBarButtonTapped: Observable<Void>) {
+        listView.setRemoveBarButtonTapped(removeBarButtonTapped: removeBarButtonTapped)
     }
     
 }
