@@ -14,14 +14,14 @@ protocol ListViewOutput {
     )
     
     typealias genderListOutput = (
-        genderList: BehaviorSubject<[Gender]>,
+        genderList: BehaviorSubject<[GenderProfileItemViewModel]>,
         genderListError: PublishSubject<String>
     )
     
     typealias selectionEventOutput = (
         cancelSelectedList: PublishSubject<Void>,
         markItem: PublishSubject<IndexPath>,
-        moveToDetail: PublishSubject<Gender?>
+        moveToDetail: PublishSubject<GenderProfileItemViewModel?>
     )
     
     var disposeBag: DisposeBag { get }
@@ -32,7 +32,7 @@ protocol ListViewOutput {
     
     func createGenderListOutput(input: ListViewModel.Input) -> genderListOutput
     
-    func createSelectionEventOutput(input: ListViewModel.Input, genderList: BehaviorSubject<[Gender]>) -> selectionEventOutput
+    func createSelectionEventOutput(input: ListViewModel.Input, genderList: BehaviorSubject<[GenderProfileItemViewModel]>) -> selectionEventOutput
     
     func removeAllSelectedItems()
 }

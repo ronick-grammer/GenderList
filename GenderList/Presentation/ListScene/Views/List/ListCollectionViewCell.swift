@@ -79,13 +79,13 @@ final class ListCollectionViewCell: UICollectionViewCell {
         checkImage.isHidden = true
     }
     
-    func configure(genderInfo: Gender, isSelected: Bool) {
-        let profileImageUrl = URL(string: genderInfo.picture.large)
+    func configure(profileItem: GenderProfileItemViewModel, isSelected: Bool) {
+        let profileImageUrl = URL(string: profileItem.profileUrl)
         
         profileImageView.kf.indicatorType = .activity
         profileImageView.kf.setImage(with: profileImageUrl)
-        nameLabel.text = genderInfo.name.first + genderInfo.name.last
-        emailLabel.text = genderInfo.email
+        nameLabel.text = profileItem.name
+        emailLabel.text = profileItem.email
         
         checkImage.isHidden = !isSelected
     }

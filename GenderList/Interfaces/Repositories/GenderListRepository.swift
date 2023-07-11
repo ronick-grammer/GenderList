@@ -8,5 +8,5 @@
 import RxSwift
 
 protocol GenderListRepository {
-    func getGenderList(genderListQuery: GenderListQuery) -> Observable<GenderList>
+    func getGenderList(genderListQuery: GenderListQuery) -> Observable<[GenderProfile]>
 }

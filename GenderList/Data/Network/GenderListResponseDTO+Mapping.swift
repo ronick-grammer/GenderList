@@ -27,3 +27,16 @@ struct Picture: Decodable {
     let medium: String
     let thumbnail: String
 }
+
+extension GenderList {
+    func toDomain() -> [GenderProfile] {
+        results.map {
+            GenderProfile(
+                gender: $0.gender,
+                name: $0.name.first + " " + $0.name.last,
+                email: $0.email,
+                profileUrl: $0.picture.large
+            )
+        }
+    }
+}
