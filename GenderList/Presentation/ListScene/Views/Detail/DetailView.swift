@@ -46,14 +46,20 @@ final class DetailView: UIView {
         return label
     }()
     
+    private let viewModel: GenderProfileItemViewModel
+    
     private var leadingSpace: Int {
         10
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: GenderProfileItemViewModel) {
+        self.viewModel = viewModel
+        
+        super.init(frame: .zero)
+        
         scrollView.delegate = self
         setUp()
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -87,13 +93,11 @@ final class DetailView: UIView {
         }
     }
     
-    func configure(genderInfo: Gender?) {
-        guard let genderInfo = genderInfo else { return }
-        
-        let profileImageUrl = URL(string: genderInfo.picture.large)
+    func configure() {
+        let profileImageUrl = URL(string: viewModel.profileUrl)
         profileImageView.kf.setImage(with: profileImageUrl)
-        nameLabel.text = genderInfo.name.first + genderInfo.name.last
-        emailLabel.text = genderInfo.email
+        nameLabel.text = viewModel.name
+        emailLabel.text = viewModel.email
     }
 }
 

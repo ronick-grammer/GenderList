@@ -31,7 +31,7 @@ final class ListViewModel: ViewModelType {
     
     struct Output {
         /// 성별 리스트
-        let genderList: BehaviorSubject<[Gender]>
+        let genderList: BehaviorSubject<[GenderProfileItemViewModel]>
         
         /// 성별 리스트 에러
         let genderListError: Observable<String>
@@ -43,7 +43,7 @@ final class ListViewModel: ViewModelType {
         let markItem: Observable<IndexPath>
         
         /// 선택한 아이템의 상세화면 이동
-        let moveToDetail: Observable<Gender?>
+        let moveToDetail: Observable<GenderProfileItemViewModel?>
     }
     
     var disposeBag = DisposeBag()

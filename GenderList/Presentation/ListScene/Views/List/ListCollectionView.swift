@@ -109,7 +109,7 @@ extension ListCollectionView: Bindable {
         output.genderList
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListCollectionViewCell.self))
         { index, item, cell in
-            cell.configure(genderInfo: item, isSelected: self.viewModel.isSelected(index: index))
+            cell.configure(profileItem: item, isSelected: self.viewModel.isSelected(index: index))
         }.disposed(by: disposeBag)
         
         output.genderListError
@@ -129,10 +129,9 @@ extension ListCollectionView: Bindable {
         // 디테일 성별 리스트 화면 이동
         output.moveToDetail
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { genderInfo in
-                let detailView = DetailView()
-                detailView.configure(genderInfo: genderInfo)
-                
+            .subscribe(onNext: { genderProfileItem in
+                guard let genderProfileItem = genderProfileItem else { return }
+                let detailView = DetailView(viewModel: genderProfileItem)
                 let detailVC = DetailViewController(detailView: detailView)
                 self.listViewDelegate?.pushDetailViewController(detailVC: detailVC)
             }).disposed(by: disposeBag)

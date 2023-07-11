@@ -22,7 +22,7 @@ class ListViewOutputHelper: ListViewOutput {
     }
     
     func createGenderListOutput(input: ListViewModel.Input) -> genderListOutput {
-        let genderList = BehaviorSubject<[Gender]>.init(value: [])
+        let genderList = BehaviorSubject<[GenderProfileItemViewModel]>.init(value: [])
         let genderListError = PublishSubject<String>()
         
         var genderType = ""
@@ -62,9 +62,10 @@ class ListViewOutputHelper: ListViewOutput {
                 genderList.onNext(list)
             }).disposed(by: disposeBag)
         
-        return (genderList, genderListError)    }
+        return (genderList, genderListError)
+    }
     
-    func createSelectionEventOutput(input: ListViewModel.Input, genderList: BehaviorSubject<[Gender]>) -> selectionEventOutput {
+    func createSelectionEventOutput(input: ListViewModel.Input, genderList: BehaviorSubject<[GenderProfileItemViewModel]>) -> selectionEventOutput {
         var isSelectMode = false
         let cancelSelectedList = PublishSubject<Void>()
         
@@ -78,7 +79,7 @@ class ListViewOutputHelper: ListViewOutput {
             }).disposed(by: disposeBag)
         
         let markItem = PublishSubject<IndexPath>()
-        let moveToDetail = PublishSubject<Gender?>()
+        let moveToDetail = PublishSubject<GenderProfileItemViewModel?>()
         input.itemTapped
             .map { SelectedItemInfo(indexPath: $0, isSelectMode: isSelectMode) }
             .subscribe(onNext: { itemInfo in

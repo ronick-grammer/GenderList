@@ -48,9 +48,6 @@ final class DefaultNetworkService: NetworkService {
                             observer.onError(error)
                         }
                     case let .failure(error):
-                        if error is NetworkError {
-                            print("network Error")
-                        }
                         observer.onError(error)
                     }
                 }
