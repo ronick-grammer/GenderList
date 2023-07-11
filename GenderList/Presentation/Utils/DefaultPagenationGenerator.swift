@@ -34,7 +34,7 @@ final class DefaultPagenationGenerator<T>: PagenationGenerator {
         fetchStatus = .loading
         
         fetch(page, limit, { [weak self] items in
-            guard let self = self else { return }
+            guard let self else { return }
             self.fetchStatus = .ready
             self.elements.append(contentsOf: items)
             self.page += 1
