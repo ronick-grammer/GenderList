@@ -27,7 +27,7 @@
 
 #### 아키텍처 패턴: Clean Architecture
 #### 디자인 패턴: MVVM, Input/Output
-#### 라이브러리: SnapKit, RxSwift, RxCocoa, Alamofire, Kingfisher 
+#### 라이브러리: SnapKit, RxSwift, RxCocoa, Alamofire(HTTP통신), Kingfisher(이미지캐싱)
 
 #### 레이어 구조
 ```
