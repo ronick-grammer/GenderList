@@ -1,5 +1,5 @@
 //
-//  InitialViewController.swift
+//  GenderListViewController.swift
 //  GenderList
 //
 //  Created by Ronick on 6/20/23.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-final class InitialViewController: UIViewController {
+final class GenderListViewController: UIViewController {
 
     lazy var tabListView =  TabPageView(
         selectBarButtonTapped: selectBarButton.rx.tap
@@ -87,7 +87,7 @@ final class InitialViewController: UIViewController {
     }
 }
 
-extension InitialViewController: Bindable {
+extension GenderListViewController: Bindable {
     func bind() {
         output.selectButtonTitle
             .bind(to: selectBarButton.rx.title)
@@ -95,7 +95,7 @@ extension InitialViewController: Bindable {
     }
 }
 
-extension InitialViewController: ListViewDelegate {
+extension GenderListViewController: ListViewDelegate {
     func pushDetailViewController(detailVC: DetailViewController) {
         navigationController?.pushViewController(detailVC, animated: true)
     }

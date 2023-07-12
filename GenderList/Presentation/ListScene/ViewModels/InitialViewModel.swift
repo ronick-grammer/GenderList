@@ -18,6 +18,10 @@ class InitialViewModel: ViewModelType {
         let selectButtonTitle: Observable<String>
     }
     
+    struct Actions {
+        let showDetails: (GenderProfileItemViewModel) -> Void
+    }
+    
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {

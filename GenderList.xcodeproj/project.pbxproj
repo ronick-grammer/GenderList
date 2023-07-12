@@ -14,9 +14,13 @@
 		D404F6122A4302CC0065E095 /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6112A4302CC0065E095 /* PageCollectionViewCell.swift */; };
 		D404F6152A432C130065E095 /* ListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6142A432C130065E095 /* ListCollectionView.swift */; };
 		D404F6172A432C1D0065E095 /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6162A432C1D0065E095 /* ListCollectionViewCell.swift */; };
+		D41D7C0E2A5D573E00F46AAC /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D7C0D2A5D573E00F46AAC /* AppFlowCoordinator.swift */; };
+		D41D7C112A5D5A9300F46AAC /* AppDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D7C102A5D5A9300F46AAC /* AppDIContainer.swift */; };
+		D41D7C132A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D7C122A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift */; };
+		D41D7C162A5D5F7500F46AAC /* GenderListFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41D7C152A5D5F7500F46AAC /* GenderListFlowCoordinator.swift */; };
 		D463D46C2A419E4B00E37898 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D46B2A419E4B00E37898 /* AppDelegate.swift */; };
 		D463D46E2A419E4B00E37898 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D46D2A419E4B00E37898 /* SceneDelegate.swift */; };
-		D463D4702A419E4B00E37898 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D46F2A419E4B00E37898 /* InitialViewController.swift */; };
+		D463D4702A419E4B00E37898 /* GenderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463D46F2A419E4B00E37898 /* GenderListViewController.swift */; };
 		D463D4752A419E4C00E37898 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D463D4742A419E4C00E37898 /* Assets.xcassets */; };
 		D463D4782A419E4C00E37898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D463D4762A419E4C00E37898 /* LaunchScreen.storyboard */; };
 		D480D3E92A5D02DE00AD0C26 /* GenderProfileItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480D3E82A5D02DE00AD0C26 /* GenderProfileItemViewModel.swift */; };
@@ -60,10 +64,14 @@
 		D404F6112A4302CC0065E095 /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
 		D404F6142A432C130065E095 /* ListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionView.swift; sourceTree = "<group>"; };
 		D404F6162A432C1D0065E095 /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		D41D7C0D2A5D573E00F46AAC /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		D41D7C102A5D5A9300F46AAC /* AppDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDIContainer.swift; sourceTree = "<group>"; };
+		D41D7C122A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListSceneDIContainer.swift; sourceTree = "<group>"; };
+		D41D7C152A5D5F7500F46AAC /* GenderListFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListFlowCoordinator.swift; sourceTree = "<group>"; };
 		D463D4682A419E4B00E37898 /* GenderList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenderList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D463D46B2A419E4B00E37898 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D463D46D2A419E4B00E37898 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D463D46F2A419E4B00E37898 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		D463D46F2A419E4B00E37898 /* GenderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListViewController.swift; sourceTree = "<group>"; };
 		D463D4742A419E4C00E37898 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D463D4772A419E4C00E37898 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D463D4792A419E4C00E37898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,6 +204,7 @@
 		D404F60C2A4301440065E095 /* ListScene */ = {
 			isa = PBXGroup;
 			children = (
+				D41D7C142A5D5F6100F46AAC /* Flow */,
 				D404F5FB2A429BAD0065E095 /* ViewModels */,
 				D463D4842A41A95D00E37898 /* Views */,
 			);
@@ -212,6 +221,23 @@
 				D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D41D7C0F2A5D5A7B00F46AAC /* DIContainer */ = {
+			isa = PBXGroup;
+			children = (
+				D41D7C102A5D5A9300F46AAC /* AppDIContainer.swift */,
+				D41D7C122A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift */,
+			);
+			path = DIContainer;
+			sourceTree = "<group>";
+		};
+		D41D7C142A5D5F6100F46AAC /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				D41D7C152A5D5F7500F46AAC /* GenderListFlowCoordinator.swift */,
+			);
+			path = Flow;
 			sourceTree = "<group>";
 		};
 		D463D45F2A419E4B00E37898 = {
@@ -253,6 +279,8 @@
 			children = (
 				D463D46B2A419E4B00E37898 /* AppDelegate.swift */,
 				D463D46D2A419E4B00E37898 /* SceneDelegate.swift */,
+				D41D7C0D2A5D573E00F46AAC /* AppFlowCoordinator.swift */,
+				D41D7C0F2A5D5A7B00F46AAC /* DIContainer */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -273,7 +301,7 @@
 				D404F6052A42F6480065E095 /* List */,
 				D404F6042A42F63B0065E095 /* Tab */,
 				D4DEA8442A48F9D9006FB3DF /* Detail */,
-				D463D46F2A419E4B00E37898 /* InitialViewController.swift */,
+				D463D46F2A419E4B00E37898 /* GenderListViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,11 +520,13 @@
 			files = (
 				D4FCE4792A55229100D60C20 /* InitialViewModel.swift in Sources */,
 				D4DEA82A2A46C9BA006FB3DF /* GenderListRepository.swift in Sources */,
+				D41D7C112A5D5A9300F46AAC /* AppDIContainer.swift in Sources */,
 				D4DEA8242A46C5A6006FB3DF /* NetworkService.swift in Sources */,
 				D485DC252A57ED9A00243487 /* ListViewOutput.swift in Sources */,
 				D4DEA8182A45AFD2006FB3DF /* TabListViewModel.swift in Sources */,
 				D4DEA8222A46C330006FB3DF /* GenderListResponseDTO+Mapping.swift in Sources */,
 				D404F6032A429D5B0065E095 /* TabCollectionViewCell.swift in Sources */,
+				D41D7C132A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift in Sources */,
 				D404F6082A42F65C0065E095 /* TabPageView.swift in Sources */,
 				D49B50E82A53F8C70081FF9D /* UIView+Extension.swift in Sources */,
 				D4DEA8432A48F046006FB3DF /* TabView+Rx.swift in Sources */,
@@ -507,11 +537,12 @@
 				D4DEA80D2A448396006FB3DF /* Bindable.swift in Sources */,
 				D4DEA81E2A46BD37006FB3DF /* ColumnStyle.swift in Sources */,
 				D4DEA83D2A484397006FB3DF /* UICollectionView+Rx.swift in Sources */,
-				D463D4702A419E4B00E37898 /* InitialViewController.swift in Sources */,
+				D463D4702A419E4B00E37898 /* GenderListViewController.swift in Sources */,
 				D4DEA8122A4485D1006FB3DF /* UICollectionView+Extension.swift in Sources */,
 				D4DEA8312A46F34F006FB3DF /* GenderListUsecase.swift in Sources */,
 				D4DEA8202A46C182006FB3DF /* ListViewModel.swift in Sources */,
 				D4DEA8412A48D5F4006FB3DF /* GenderListFetchHelper.swift in Sources */,
+				D41D7C162A5D5F7500F46AAC /* GenderListFlowCoordinator.swift in Sources */,
 				D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */,
 				D480D3E92A5D02DE00AD0C26 /* GenderProfileItemViewModel.swift in Sources */,
 				D4DEA83A2A483120006FB3DF /* DefaultPagenationGenerator.swift in Sources */,
@@ -522,6 +553,7 @@
 				D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */,
 				D463D46C2A419E4B00E37898 /* AppDelegate.swift in Sources */,
 				D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */,
+				D41D7C0E2A5D573E00F46AAC /* AppFlowCoordinator.swift in Sources */,
 				D485DC222A57ECE400243487 /* ListViewOutputHelper.swift in Sources */,
 				D4DEA81A2A45FB10006FB3DF /* ListPageView+Rx.swift in Sources */,
 				D463D46E2A419E4B00E37898 /* SceneDelegate.swift in Sources */,
