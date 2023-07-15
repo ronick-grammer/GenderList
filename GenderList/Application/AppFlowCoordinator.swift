@@ -18,7 +18,21 @@ final class AppFlowCoordinator {
     
     func start() {
         let genderListSceneDIContainer = appDIContainer.makeGenderListSceneDIContainer()
-        let flow = genderListSceneDIContainer.makeGenderListFlowCoordinator(navigationController: navigationController)
+        let flow = genderListSceneDIContainer.makeGenderListFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: self
+        )
+        flow.start()
+    }
+    
+    func startDetailsView(dependencies: GenderListDetailDIContainer.Dependencies) {
+        let genderListDetailDIContainer = appDIContainer.makeGenderListDetailDIContainer(
+            dependencies: dependencies
+        )
+        let flow = genderListDetailDIContainer.makeGenderListDetailFlowCoordinator(
+            navigationController: navigationController,
+            parentCoordinator: self
+        )
         flow.start()
     }
 }

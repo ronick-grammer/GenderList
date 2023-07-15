@@ -11,4 +11,8 @@ final class AppDIContainer {
     func makeGenderListSceneDIContainer() -> GenderListSceneDIContainer {
         GenderListSceneDIContainer()
     }
+    
+    func makeGenderListDetailDIContainer(dependencies: GenderListDetailDIContainer.Dependencies) -> GenderListDetailDIContainer {
+        GenderListDetailDIContainer(dependencies: dependencies)
+    }
 }
