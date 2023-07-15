@@ -51,6 +51,8 @@
 		D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */; };
 		D4DEA8412A48D5F4006FB3DF /* GenderListFetchHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */; };
 		D4DEA8432A48F046006FB3DF /* TabView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */; };
+		D4E244A92A5FEF9B004E0167 /* GenderListDetailDIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244A82A5FEF9B004E0167 /* GenderListDetailDIContainer.swift */; };
+		D4E244AB2A5FF01F004E0167 /* GenderListDetailFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E244AA2A5FF01F004E0167 /* GenderListDetailFlowCoordinator.swift */; };
 		D4FCE4792A55229100D60C20 /* InitialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FCE4782A55229100D60C20 /* InitialViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +105,8 @@
 		D4DEA83E2A48D413006FB3DF /* FetchStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchStatus.swift; sourceTree = "<group>"; };
 		D4DEA8402A48D5F4006FB3DF /* GenderListFetchHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListFetchHelper.swift; sourceTree = "<group>"; };
 		D4DEA8422A48F046006FB3DF /* TabView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabView+Rx.swift"; sourceTree = "<group>"; };
+		D4E244A82A5FEF9B004E0167 /* GenderListDetailDIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListDetailDIContainer.swift; sourceTree = "<group>"; };
+		D4E244AA2A5FF01F004E0167 /* GenderListDetailFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderListDetailFlowCoordinator.swift; sourceTree = "<group>"; };
 		D4FCE4782A55229100D60C20 /* InitialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +232,7 @@
 			children = (
 				D41D7C102A5D5A9300F46AAC /* AppDIContainer.swift */,
 				D41D7C122A5D5C6C00F46AAC /* GenderListSceneDIContainer.swift */,
+				D4E244A82A5FEF9B004E0167 /* GenderListDetailDIContainer.swift */,
 			);
 			path = DIContainer;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				D41D7C152A5D5F7500F46AAC /* GenderListFlowCoordinator.swift */,
+				D4E244AA2A5FF01F004E0167 /* GenderListDetailFlowCoordinator.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -264,7 +270,6 @@
 				D463D47F2A41A29F00E37898 /* Application */,
 				D463D4802A41A91F00E37898 /* Presentation */,
 				D463D49B2A4296A700E37898 /* Domain */,
-				D4DEA8282A46C954006FB3DF /* Interfaces */,
 				D404F5FC2A429BB30065E095 /* Data */,
 				D404F5FE2A429BC80065E095 /* Infrastructure */,
 				D463D4742A419E4C00E37898 /* Assets.xcassets */,
@@ -322,6 +327,7 @@
 			children = (
 				D463D49E2A4296BA00E37898 /* Entities */,
 				D463D49D2A4296B500E37898 /* Usecases */,
+				D4DEA8282A46C954006FB3DF /* Interfaces */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -546,10 +552,12 @@
 				D4DEA8362A4725AD006FB3DF /* DetailView.swift in Sources */,
 				D480D3E92A5D02DE00AD0C26 /* GenderProfileItemViewModel.swift in Sources */,
 				D4DEA83A2A483120006FB3DF /* DefaultPagenationGenerator.swift in Sources */,
+				D4E244AB2A5FF01F004E0167 /* GenderListDetailFlowCoordinator.swift in Sources */,
 				D4DEA81C2A46802E006FB3DF /* DetailViewController.swift in Sources */,
 				D4B062D62A5A97A700E6B374 /* GenderProfile.swift in Sources */,
 				D4DEA8142A44933D006FB3DF /* ListPageViewModel.swift in Sources */,
 				D404F6122A4302CC0065E095 /* PageCollectionViewCell.swift in Sources */,
+				D4E244A92A5FEF9B004E0167 /* GenderListDetailDIContainer.swift in Sources */,
 				D4DEA83F2A48D413006FB3DF /* FetchStatus.swift in Sources */,
 				D463D46C2A419E4B00E37898 /* AppDelegate.swift in Sources */,
 				D4DEA80F2A4483AC006FB3DF /* ViewModelType.swift in Sources */,
