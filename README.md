@@ -32,25 +32,36 @@
 ```
 ├── Application
 │   ├── AppDelegate.swift
+│   ├── AppFlowCoordinator.swift
+│   ├── DIContainer
+│   │   ├── AppDIContainer.swift
+│   │   ├── GenderListDetailDIContainer.swift
+│   │   └── GenderListSceneDIContainer.swift
 │   └── SceneDelegate.swift
 ├── Data
+│   ├── Network
+│   │   ├── GenderListQuery.swift
+│   │   └── GenderListResponseDTO+Mapping.swift
 │   └── Repositories
 │       └── DefaultGenderListRepository.swift
 ├── Domain
 │   ├── Entities
-│   │   ├── GenderList.swift
-│   │   └── GenderListQuery.swift
+│   │   └── GenderProfile.swift
+│   ├── Interfaces
+│   │   └── Repositories
+│   │       └── GenderListRepository.swift
 │   └── Usecases
 │       └── GenderListUsecase.swift
 ├── Infrastructure
-│   └── Networks
+│   └── Network
 │       └── NetworkService.swift
-├── Interfaces
-│   └── Repositories
-│       └── GenderListRepository.swift
 └── Presentation
     ├── ListScene
+    │   ├── Flow
+    │   │   ├── GenderListDetailFlowCoordinator.swift
+    │   │   └── GenderListFlowCoordinator.swift
     │   ├── ViewModels
+    │   │   ├── GenderProfileItemViewModel.swift
     │   │   ├── InitialViewModel.swift
     │   │   ├── ListPageViewModel.swift
     │   │   ├── ListViewModel.swift
@@ -62,7 +73,7 @@
     │       ├── Detail
     │       │   ├── DetailView.swift
     │       │   └── DetailViewController.swift
-    │       ├── InitialViewController.swift
+    │       ├── GenderListViewController.swift
     │       ├── List
     │       │   ├── ListCollectionView.swift
     │       │   ├── ListCollectionViewCell.swift
