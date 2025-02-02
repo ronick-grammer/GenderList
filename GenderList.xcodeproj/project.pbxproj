@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0EF7FDC7088D090209205AE /* Pods_GenderList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32AC6CA104B652FD3E72A9A /* Pods_GenderList.framework */; };
 		D404F6012A429CA40065E095 /* TabCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6002A429CA40065E095 /* TabCollectionView.swift */; };
 		D404F6032A429D5B0065E095 /* TabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6022A429D5B0065E095 /* TabCollectionViewCell.swift */; };
 		D404F6082A42F65C0065E095 /* TabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D404F6072A42F65C0065E095 /* TabPageView.swift */; };
@@ -60,7 +59,6 @@
 /* Begin PBXFileReference section */
 		452EB8A8D971E7BD7183B125 /* Pods-GenderList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenderList.debug.xcconfig"; path = "Target Support Files/Pods-GenderList/Pods-GenderList.debug.xcconfig"; sourceTree = "<group>"; };
 		CF03917F3E07BA67B3825C05 /* Pods-GenderList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenderList.release.xcconfig"; path = "Target Support Files/Pods-GenderList/Pods-GenderList.release.xcconfig"; sourceTree = "<group>"; };
-		D32AC6CA104B652FD3E72A9A /* Pods_GenderList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenderList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D404F6002A429CA40065E095 /* TabCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionView.swift; sourceTree = "<group>"; };
 		D404F6022A429D5B0065E095 /* TabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCollectionViewCell.swift; sourceTree = "<group>"; };
 		D404F6072A42F65C0065E095 /* TabPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPageView.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0EF7FDC7088D090209205AE /* Pods_GenderList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +124,6 @@
 		8A6A71B79F4EC25E9C547810 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D32AC6CA104B652FD3E72A9A /* Pods_GenderList.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
