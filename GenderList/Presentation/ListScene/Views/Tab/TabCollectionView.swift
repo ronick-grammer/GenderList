@@ -10,15 +10,12 @@ import RxSwift
 import RxCocoa
 
 final class TabCollectionView: UICollectionView {
-    
     typealias ViewModel = TabViewModel
     
     let cellIdentifier = "TabViewCell"
     
     let viewModel = ViewModel()
-    
     let input: ViewModel.Input
-    
     let output: ViewModel.Output
     
     var disposeBag = DisposeBag()

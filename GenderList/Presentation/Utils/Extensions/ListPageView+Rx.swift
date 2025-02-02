@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 extension Reactive where Base: PageCollectionView {
-    
     /// 페이지 스와이프 Observable
     var pageSwiped: Observable<PageInfo> {
         base.rx.didScroll
@@ -39,7 +38,6 @@ extension Reactive where Base: PageCollectionView {
             cell_2?.listCollectionView.setColumnStyle(columnStyle: columnStyle)
         }
     }
-    
     
     /// 선택한 페이지로 스크롤 이동 Binder
     var selectedPage: Binder<Int> {

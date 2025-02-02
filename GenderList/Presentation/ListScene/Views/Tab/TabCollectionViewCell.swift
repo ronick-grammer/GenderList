@@ -8,7 +8,6 @@
 import UIKit
 
 final class TabCollectionViewCell: UICollectionViewCell {
-    
     private let tabTitleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 15)
@@ -43,4 +42,3 @@ final class TabCollectionViewCell: UICollectionViewCell {
         tabTitleLabel.textColor = to
     }
 }
-

@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 
 final class ListCollectionViewCell: UICollectionViewCell {
-    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "person")
@@ -94,5 +93,3 @@ final class ListCollectionViewCell: UICollectionViewCell {
         checkImage.isHidden = !checkImage.isHidden
     }
 }
-
-

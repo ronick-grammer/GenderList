@@ -10,7 +10,6 @@ import SnapKit
 import RxSwift
 
 final class PageCollectionViewCell: UICollectionViewCell {
-    
     var listCollectionView = ListCollectionView()
     
     override init(frame: CGRect) {
@@ -44,5 +43,4 @@ final class PageCollectionViewCell: UICollectionViewCell {
     func setRemoveBarButtonTapped(removeBarButtonTapped: Observable<Void>) {
         listCollectionView.setRemoveBarButtonTapped(removeBarButtonTapped: removeBarButtonTapped)
     }
-    
 }

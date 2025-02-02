@@ -12,23 +12,17 @@ import RxCocoa
 typealias PageInfo = (prev: Int, current: Int)
 
 final class PageCollectionView: UICollectionView {
-    
     typealias ViewModel = ListPageViewModel
     
     let cellIdentifier = "ListPageViewCell"
     
     let viewModel = ViewModel()
-    
     let input: ViewModel.Input
-    
     let output: ViewModel.Output
     
     var disposeBag = DisposeBag()
-    
     var listViewDelegate: ListViewDelegate?
-    
     var selectBarButtonTapped: Observable<Bool>
-    
     var removeBarButtonTapped: Observable<Void>
 
     init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>, selectBarButtonTapped: Observable<Bool>, removeBarButtonTapped: Observable<Void>) {
@@ -38,9 +32,7 @@ final class PageCollectionView: UICollectionView {
         )
         
         self.output = viewModel.transform(input: input)
-        
         self.selectBarButtonTapped = selectBarButtonTapped
-        
         self.removeBarButtonTapped = removeBarButtonTapped
         
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
