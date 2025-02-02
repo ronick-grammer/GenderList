@@ -13,8 +13,8 @@ protocol GenderListUsecase {
     
     /// 성별 리스트 데이터를 가져옵니다
     /// - Parameter genderListQuery: 쿼리파라미터
-    /// - Returns: 성별 리스트 데이터
-    func get(genderListQuery: GenderListQuery) async throws -> [GenderProfileItemViewModel]
+    /// - Returns: 성별 리스트 데이터 Observable
+    func get(genderListQuery: GenderListQuery) -> Observable<[GenderProfileItemViewModel]>
 }
 
 final class DefaultGenderListUsecase: GenderListUsecase {
@@ -24,9 +24,10 @@ final class DefaultGenderListUsecase: GenderListUsecase {
         self.genderListRepository = genderListRepository
     }
     
-    func get(genderListQuery: GenderListQuery) async throws -> [GenderProfileItemViewModel] {
-        return try await genderListRepository
+    func get(genderListQuery: GenderListQuery) -> Observable<[GenderProfileItemViewModel]> {
+        genderListRepository
             .getGenderList(genderListQuery: genderListQuery)
-            .map(GenderProfileItemViewModel.init)
+            .map { $0.map(GenderProfileItemViewModel.init) }
     }
+
 }
