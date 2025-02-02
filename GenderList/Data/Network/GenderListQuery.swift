@@ -7,9 +7,7 @@
 
 struct GenderListQuery {
     let page: Int
-    
     let results: Int
-    
     let seed: String
     
     var parameters: [String: Any] {
