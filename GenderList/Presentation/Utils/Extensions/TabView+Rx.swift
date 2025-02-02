@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 extension Reactive where Base: TabCollectionView {
-    
     /// 탭 버튼 클릭 Observable
     var tabButtonTapped: Observable<PageInfo> {
         base.rx.itemSelected
@@ -25,7 +24,6 @@ extension Reactive where Base: TabCollectionView {
                 return (prev: previousPage, current: currentPage)
             }
     }
-    
     
     /// 탭 버튼 선택 처리 Binder
     var selectedTab: Binder<PageInfo> {

@@ -8,11 +8,8 @@
 import RxSwift
 
 class ListViewOutputHelper: ListViewOutput {
-    
     var disposeBag = DisposeBag()
-    
     var fetchHelper: DefaultGenderListFetchHelper
-    
     var selectedItemIndexes = [Int]()
     
     init(usecase: GenderListUsecase = DefaultGenderListUsecase(

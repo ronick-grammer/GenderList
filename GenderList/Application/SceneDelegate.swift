@@ -8,7 +8,6 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     let appDIContainer = AppDIContainer()
 
@@ -19,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController()
         navigationController.navigationBar.backgroundColor = .clear
         navigationController.navigationBar.isTranslucent = false
-
         
         window?.rootViewController = navigationController
         let appFlowCoordinator = AppFlowCoordinator(

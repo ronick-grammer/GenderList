@@ -8,7 +8,6 @@
 import RxSwift
 
 final class TabListViewModel: ViewModelType {
-    
     struct Input {
         /// 성별 리스트 구성 전환 버튼 클릭 이벤트
         let columnStyleButtonTapped: Observable<Void>
@@ -34,7 +33,6 @@ final class TabListViewModel: ViewModelType {
     var disposeBag = DisposeBag()
     
     func transform(input: Input) -> Output {
-        
         let columnStyle = input.columnStyleButtonTapped
             .scan(ColumnStyle.two) { prev, _ in
                 switch prev {

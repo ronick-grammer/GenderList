@@ -7,7 +7,6 @@
 
 import RxSwift
 
-
 /// 성별 리스트 유즈케이스
 protocol GenderListUsecase {
     

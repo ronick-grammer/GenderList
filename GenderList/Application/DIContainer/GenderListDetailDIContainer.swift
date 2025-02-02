@@ -8,7 +8,6 @@
 import UIKit
 
 final class GenderListDetailDIContainer: GenderListDetailFlowCoodinatorDependencies {
-    
     struct Dependencies {
         let genderProfileItem: GenderProfileItemViewModel
     }
