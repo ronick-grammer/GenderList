@@ -16,18 +16,18 @@ final class DefaultGenderListRepository {
 }
 
 extension DefaultGenderListRepository: GenderListRepository {
-    func getGenderList(genderListQuery: GenderListQuery) -> Observable<[GenderProfile]> {
+    func getGenderList(genderListQuery: GenderListQuery) async throws -> [GenderProfile] {
         let page = genderListQuery.page
         let results = genderListQuery.results
         let seed = genderListQuery.seed
         
         // TODO: endpoint enum화 작업
-        let response: Observable<GenderList> = networkService
+        let response: GenderList = try await networkService
             .request(
                 urlString: "https://randomuser.me/api/?page=\(page)&results=\(results)&seed=\(seed)&inc=gender,name,email,picture",
                 queryParameter: genderListQuery.parameters
             )
         
-        return response.map { $0.toDomain() }
+        return response.toDomain()
     }
 }
