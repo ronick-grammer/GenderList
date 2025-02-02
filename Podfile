@@ -7,12 +7,12 @@ target 'GenderList' do
 
   # Pods for GenderList
 
-  pod 'RxSwift', '~> 6.0'
+  pod 'RxSwift', '~> 6.5'
   pod 'RxCocoa', '~> 6.0'
 
   pod 'SnapKit', '~> 5.0.0'
 
-  pod 'Alamofire', '~> 5.0.0'
+  pod 'Alamofire', '~> 5.5.0'
 
   pod 'Kingfisher', '~> 6.3.1'
 end
