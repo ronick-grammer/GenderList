@@ -8,6 +8,7 @@
 import RxSwift
 
 final class ListViewModel: ViewModelType {
+    
     struct Input {
         /// 탭 화면(남자 or 여자) 리스트 초기화 이벤트
         let tabInitialized: PublishSubject<String>
@@ -45,9 +46,9 @@ final class ListViewModel: ViewModelType {
         let moveToDetail: Observable<GenderProfileItemViewModel?>
     }
     
-    private let listViewOutputHelper: ListViewOutput
-    
     var disposeBag = DisposeBag()
+        
+    private let listViewOutputHelper: ListViewOutput
     
     init(outputHelper: ListViewOutput = ListViewOutputHelper()) {
         listViewOutputHelper = outputHelper

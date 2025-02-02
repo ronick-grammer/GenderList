@@ -10,18 +10,7 @@ import SnapKit
 import RxSwift
 
 final class GenderListViewController: UIViewController {
-    typealias ViewModel = InitialViewModel
-    
-    let viewModel = ViewModel()
-    
-    var disposeBag = DisposeBag()
-    
-    lazy var input = ViewModel.Input(
-        selectButtonTapped: selectBarButton.rx.tap.asObservable()
-    )
-    
-    lazy var output = viewModel.transform(input: input)
-    
+
     lazy var tabListView =  TabPageView(
         selectBarButtonTapped: selectBarButton.rx.tap
             .scan(false, accumulator: { prev, _ in
@@ -56,6 +45,18 @@ final class GenderListViewController: UIViewController {
         
         return barButton
     }()
+    
+    typealias ViewModel = InitialViewModel
+    
+    let viewModel = ViewModel()
+    
+    lazy var input = ViewModel.Input(
+        selectButtonTapped: selectBarButton.rx.tap.asObservable()
+    )
+    
+    lazy var output = viewModel.transform(input: input)
+    
+    var disposeBag = DisposeBag()
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -99,3 +100,4 @@ extension GenderListViewController: ListViewDelegate {
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
+

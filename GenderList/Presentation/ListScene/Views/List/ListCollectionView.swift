@@ -13,9 +13,10 @@ protocol ListViewDelegate {
 }
 
 final class ListCollectionView: UICollectionView {
-    typealias ViewModel = ListViewModel
     
     private let cellIdentifier = "ListViewCell"
+    
+    typealias ViewModel = ListViewModel
     
     let viewModel = ViewModel()
     
@@ -102,7 +103,9 @@ final class ListCollectionView: UICollectionView {
 }
 
 extension ListCollectionView: Bindable {
+    
     func bind() {
+        
         output.genderList
             .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListCollectionViewCell.self))
         { index, item, cell in

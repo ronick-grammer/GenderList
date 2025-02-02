@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 class InitialViewModel: ViewModelType {
+    
     struct Input {
         let selectButtonTapped: Observable<Void>
     }

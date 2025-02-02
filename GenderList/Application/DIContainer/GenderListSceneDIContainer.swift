@@ -8,6 +8,7 @@
 import UIKit
 
 final class GenderListSceneDIContainer: GenderListFlowCoodinatorDependencies {
+    
     func makeGenderDetailsViewController(genderProfileItem: GenderProfileItemViewModel) -> DetailViewController {
         let detailView = DetailView(viewModel: genderProfileItem)
         return DetailViewController(detailView: detailView)

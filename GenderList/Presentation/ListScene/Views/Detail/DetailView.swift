@@ -8,6 +8,7 @@
 import UIKit
 
 final class DetailView: UIView {
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = false

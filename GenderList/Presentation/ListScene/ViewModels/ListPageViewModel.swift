@@ -8,6 +8,7 @@
 import RxSwift
 
 final class ListPageViewModel: ViewModelType {
+    
     struct Input {
         /// 탭 화면(남자, 여자) 리스트 초기화 이벤트
         let tabsInitialized: Observable<[String]>
@@ -31,4 +32,5 @@ final class ListPageViewModel: ViewModelType {
             tabs: tabs
         )
     }
+    
 }

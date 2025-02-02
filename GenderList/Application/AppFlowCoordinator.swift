@@ -22,7 +22,6 @@ final class AppFlowCoordinator {
             navigationController: navigationController,
             parentCoordinator: self
         )
-        
         flow.start()
     }
     

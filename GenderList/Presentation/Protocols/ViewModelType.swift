@@ -8,8 +8,10 @@
 import Foundation
 import RxSwift
 
+
 /// 뷰모델에서 Input Output 디자인 패턴을 사용하도록 강제하는 프로토콜
 protocol ViewModelType {
+    
     associatedtype Input
     associatedtype Output
     

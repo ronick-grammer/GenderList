@@ -10,7 +10,9 @@ import RxSwift
 import RxCocoa
 
 final class TabPageView: UIView {
+    
     private let tabCollectionView: TabCollectionView
+    
     private let pageCollectionView: PageCollectionView
     
     private let columnStyleButton: UIButton = {
@@ -23,11 +25,13 @@ final class TabPageView: UIView {
         return button
     }()
     
-    let input: ViewModel.Input
-    let output: ViewModel.Output
-    let disposeBag = DisposeBag()
-    
     var viewModel = TabListViewModel()
+    
+    let input: ViewModel.Input
+    
+    let output: ViewModel.Output
+    
+    let disposeBag = DisposeBag()
     
     init(selectBarButtonTapped: Observable<Bool>, removeBarButtonTapped: Observable<Void>) {
         // TODO: Enum화 작업
