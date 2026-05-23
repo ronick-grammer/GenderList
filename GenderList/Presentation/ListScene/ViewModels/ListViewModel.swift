@@ -5,6 +5,7 @@
 //  Created by Ronick on 6/24/23.
 //
 
+import Foundation
 import RxSwift
 
 final class ListViewModel: ViewModelType {

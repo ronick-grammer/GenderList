@@ -5,6 +5,7 @@
 //  Created by RONICK on 2023/07/07.
 //
 
+import Foundation
 import RxSwift
 
 class ListViewOutputHelper: ListViewOutput {

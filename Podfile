@@ -6,9 +6,7 @@ target 'GenderList' do
   use_frameworks!
 
   # Pods for GenderList
-
-  pod 'RxSwift', '~> 6.5'
-  pod 'RxCocoa', '~> 6.0'
+  # RxSwift, RxCocoa는 SPM(ReactorKit과 함께)으로 관리
 
   pod 'SnapKit', '~> 5.0.0'
 
