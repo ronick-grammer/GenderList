@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GenderListFlowCoodinatorDependencies {
-    func makeGenderListViewController(showDetailList: (GenderProfileItemViewModel) -> Void) -> GenderListViewController
+    func makeGenderListViewController(showDetailList: @escaping (GenderProfileItemViewModel) -> Void) -> GenderListViewController
     func makeGenderDetailsViewController(genderProfileItem: GenderProfileItemViewModel) -> DetailViewController
 }
 

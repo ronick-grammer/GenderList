@@ -12,33 +12,21 @@ import RxCocoa
 typealias PageInfo = (prev: Int, current: Int)
 
 final class PageCollectionView: UICollectionView {
-    typealias ViewModel = ListPageViewModel
+    private let cellIdentifier = "ListPageViewCell"
     
-    let cellIdentifier = "ListPageViewCell"
+    private let pagesRelay = BehaviorRelay<[ListCollectionView]>(value: [])
+    private let disposeBag = DisposeBag()
     
-    let viewModel = ViewModel()
-    let input: ViewModel.Input
-    let output: ViewModel.Output
+    var pageSwiped: Observable<Int> {
+        rx.didScroll
+            .compactMap { [weak self] _ in self?.visibleIndexPath?.row }
+            .distinctUntilChanged()
+    }
     
-    var disposeBag = DisposeBag()
-    var listViewDelegate: ListViewDelegate?
-    var selectBarButtonTapped: Observable<Bool>
-    var removeBarButtonTapped: Observable<Void>
-
-    init(optionButtonTapped: Observable<Void>, tabsInitialized: Observable<[String]>, selectBarButtonTapped: Observable<Bool>, removeBarButtonTapped: Observable<Void>) {
-        
-        self.input = ViewModel.Input(
-            tabsInitialized: tabsInitialized
-        )
-        
-        self.output = viewModel.transform(input: input)
-        self.selectBarButtonTapped = selectBarButtonTapped
-        self.removeBarButtonTapped = removeBarButtonTapped
-        
+    init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-        
         setUp()
-        bind()
+        bindInternal()
     }
     
     required init?(coder: NSCoder) {
@@ -57,19 +45,22 @@ final class PageCollectionView: UICollectionView {
         
         register(PageCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
-}
-
-extension PageCollectionView: Bindable {
     
-    func bind() {
-        output.tabs
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: PageCollectionViewCell.self))
-        { _, item, cell in
-            cell.configure(columnStyle: self.viewModel.columnStyle, tabName: item)
-            cell.setListViewDelegate(listViewDelegate: self.listViewDelegate)
-            cell.setSelectButtonTapped(selectButtonTapped: self.selectBarButtonTapped)
-            cell.setRemoveBarButtonTapped(removeBarButtonTapped: self.removeBarButtonTapped)
-        }.disposed(by: disposeBag)
+    private func bindInternal() {
+        pagesRelay
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: PageCollectionViewCell.self)) { _, listView, cell in
+                cell.configure(listView: listView)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func updatePages(_ pages: [ListCollectionView]) {
+        pagesRelay.accept(pages)
+    }
+    
+    func scrollToPage(_ index: Int) {
+        let indexPath = IndexPath(row: index, section: 0)
+        scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 

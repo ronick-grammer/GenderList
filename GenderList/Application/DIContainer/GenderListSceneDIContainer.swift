@@ -13,8 +13,11 @@ final class GenderListSceneDIContainer: GenderListFlowCoodinatorDependencies {
         return DetailViewController(detailView: detailView)
     }
     
-    func makeGenderListViewController(showDetailList: (GenderProfileItemViewModel) -> Void) -> GenderListViewController {
-        GenderListViewController()
+    func makeGenderListViewController(showDetailList: @escaping (GenderProfileItemViewModel) -> Void) -> GenderListViewController {
+        let viewController = GenderListViewController(showDetailList: showDetailList)
+        viewController.reactor = GenderListViewReactor()
+        
+        return viewController
     }
     
     func makeGenderListFlowCoordinator(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator) -> GenderListFlowCoordinator {

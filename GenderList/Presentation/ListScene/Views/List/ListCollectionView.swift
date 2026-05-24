@@ -7,32 +7,26 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-protocol ListViewDelegate {
-    func pushDetailViewController(detailVC: DetailViewController)
+struct ListSnapshot {
+    let items: [GenderProfileItemViewModel]
+    let isSelectMode: Bool
+    let selectedIndexes: Set<Int>
+    
+    static let empty = ListSnapshot(items: [], isSelectMode: false, selectedIndexes: [])
 }
 
 final class ListCollectionView: UICollectionView {
-    typealias ViewModel = ListViewModel
-    
     private let cellIdentifier = "ListViewCell"
     
-    let viewModel = ViewModel()
+    private let snapshotRelay = BehaviorRelay<ListSnapshot>(value: .empty)
+    private let pullToRefreshSubject = PublishSubject<Void>()
+    private let disposeBag = DisposeBag()
     
-    lazy var input = ViewModel.Input(
-        tabInitialized: PublishSubject<String>(),
-        scrolledToBottom: rx.scrolledToBottom,
-        didPullToRefresh: PublishSubject<Void>(),
-        itemTapped: rx.itemSelected.asObservable(),
-        selectButtonTapped: PublishSubject<Observable<Bool>>(),
-        removeBarButtonTapped: PublishSubject<Observable<Void>>()
-    )
-    
-    lazy var output = viewModel.transform(input: input)
-    
-    var disposeBag = DisposeBag()
-    
-    var listViewDelegate: ListViewDelegate?
+    var itemTapped: Observable<IndexPath> { rx.itemSelected.asObservable() }
+    var scrolledToBottom: Observable<Void> { rx.scrolledToBottom }
+    var pullToRefresh: Observable<Void> { pullToRefreshSubject.asObservable() }
     
     init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -42,7 +36,7 @@ final class ListCollectionView: UICollectionView {
         self.refreshControl = refreshControl
         
         setUp()
-        bind()
+        bindInternal()
     }
     
     required init?(coder: NSCoder) {
@@ -50,20 +44,28 @@ final class ListCollectionView: UICollectionView {
     }
     
     private func setUp() {
-        setColumnStyle(columnStyle: .two)
-        
+        updateColumnStyle(.two)
         dataSource = nil
         delegate = nil
-        
         register(ListCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     
-    func configure(columnStyle: ColumnStyle, tabName: String) {
-        input.tabInitialized.onNext(tabName)
-        setColumnStyle(columnStyle: columnStyle)
+    private func bindInternal() {
+        snapshotRelay
+            .map { $0.items }
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListCollectionViewCell.self)) { [weak self] index, item, cell in
+                let snapshot = self?.snapshotRelay.value
+                let isSelected = snapshot?.selectedIndexes.contains(index) ?? false
+                cell.configure(profileItem: item, isSelected: isSelected)
+            }
+            .disposed(by: disposeBag)
+    }
+        
+    func applySnapshot(_ snapshot: ListSnapshot) {
+        snapshotRelay.accept(snapshot)
     }
     
-    func setColumnStyle(columnStyle: ColumnStyle) {
+    func updateColumnStyle(_ columnStyle: ColumnStyle) {
         let layout = UICollectionViewFlowLayout()
         
         switch columnStyle {
@@ -83,61 +85,8 @@ final class ListCollectionView: UICollectionView {
         self.collectionViewLayout = layout
     }
     
-    func setListViewDelegate(listViewDelegate: ListViewDelegate?) {
-        self.listViewDelegate = listViewDelegate
-    }
-    
-    func setSelectButtonTapped(selectButtonTapped: Observable<Bool>) {
-        input.selectButtonTapped.onNext(selectButtonTapped)
-    }
-    
-    func setRemoveBarButtonTapped(removeBarButtonTapped: Observable<Void>) {
-        input.removeBarButtonTapped.onNext(removeBarButtonTapped)
-    }
-    
-    @objc func startRefresh() {
-        input.didPullToRefresh.onNext(Void())
+    @objc private func startRefresh() {
+        pullToRefreshSubject.onNext(())
         refreshControl?.endRefreshing()
-    }
-}
-
-extension ListCollectionView: Bindable {
-    func bind() {
-        output.genderList
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: ListCollectionViewCell.self))
-        { index, item, cell in
-            cell.configure(profileItem: item, isSelected: self.viewModel.isSelected(index: index))
-        }.disposed(by: disposeBag)
-        
-        output.genderListError
-            .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] message in
-                self?.makeToast("  리스트를 불러오는데 실패하였습니다. 다시 시도해 주세요        ", withDuration: 2, delay: 1.5)
-            }.disposed(by: disposeBag)
-        
-        // 선택한 리스트 마킹 처리
-        output.markItem
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { indexPath in
-                let cell = self.cellForItem(at: indexPath) as! ListCollectionViewCell
-                cell.itemTapped()
-            }).disposed(by: disposeBag)
-        
-        // 디테일 성별 리스트 화면 이동
-        output.moveToDetail
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { genderProfileItem in
-                guard let genderProfileItem = genderProfileItem else { return }
-                let detailView = DetailView(viewModel: genderProfileItem)
-                let detailVC = DetailViewController(detailView: detailView)
-                self.listViewDelegate?.pushDetailViewController(detailVC: detailVC)
-            }).disposed(by: disposeBag)
-        
-        output.cancelSelectedList
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                self.viewModel.removeAllSelectedItems()
-                self.reloadData()
-            }).disposed(by: disposeBag)
     }
 }

@@ -10,24 +10,18 @@ import RxSwift
 import RxCocoa
 
 final class TabCollectionView: UICollectionView {
-    typealias ViewModel = TabViewModel
+    private let cellIdentifier = "TabViewCell"
     
-    let cellIdentifier = "TabViewCell"
+    private let tabsRelay = BehaviorRelay<[String]>(value: [])
+    private let disposeBag = DisposeBag()
     
-    let viewModel = ViewModel()
-    let input: ViewModel.Input
-    let output: ViewModel.Output
+    var tabTapped: Observable<Int> { rx.itemSelected.map { $0.row } }
     
-    var disposeBag = DisposeBag()
-    
-    init(tabsInitialized: Observable<[String]>) {
-        input = ViewModel.Input(tabsInitialized: tabsInitialized)
-        output = viewModel.transform(input: input)
-        
+    init() {
         super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         setUp()
-        bind()
+        bindInternal()
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +31,6 @@ final class TabCollectionView: UICollectionView {
     private func setUp() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        
         layout.itemSize = CGSize(width: UIWindow().screen.bounds.width / 2, height: 70)
         layout.minimumLineSpacing = 0
         collectionViewLayout = layout
@@ -48,15 +41,24 @@ final class TabCollectionView: UICollectionView {
         
         register(TabCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
-}
-
-extension TabCollectionView: Bindable {
     
-    func bind() {
-        output.tabs
-            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabCollectionViewCell.self))
-        { index, item, cell in
-            cell.setTitle(item, isFirstTab: index == 0)
-        }.disposed(by: disposeBag)
+    private func bindInternal() {
+        tabsRelay
+            .bind(to: rx.items(cellIdentifier: cellIdentifier, cellType: TabCollectionViewCell.self)) { index, item, cell in
+                cell.setTitle(item, isFirstTab: index == 0)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func updateTabs(_ tabs: [String]) {
+        tabsRelay.accept(tabs)
+    }
+    
+    func updateSelectedTab(_ pageInfo: PageInfo) {
+        let prevCell = cellForItem(at: IndexPath(row: pageInfo.prev, section: 0)) as? TabCollectionViewCell
+        prevCell?.changeTitleColor(to: .gray)
+        
+        let currentCell = cellForItem(at: IndexPath(row: pageInfo.current, section: 0)) as? TabCollectionViewCell
+        currentCell?.changeTitleColor(to: .black)
     }
 }
