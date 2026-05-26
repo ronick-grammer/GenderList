@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GenderProfileItemViewModel {
+struct GenderProfileItemViewModel: Equatable {
     let gender: String
     let name: String
     let email: String

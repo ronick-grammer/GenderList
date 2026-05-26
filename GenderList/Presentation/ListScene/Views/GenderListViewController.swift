@@ -14,7 +14,6 @@ final class GenderListViewController: BaseViewController {
     typealias Reactor = GenderListViewReactor
     
     private let showDetailList: (GenderProfileItemViewModel) -> Void
-    private let tabs = ["male", "female"]
     
     private lazy var selectBarButton: UIBarButtonItem = {
         UIBarButtonItem(title: "선택", style: .plain, target: self, action: nil)
@@ -26,7 +25,15 @@ final class GenderListViewController: BaseViewController {
         return UIBarButtonItem(image: image, style: .plain, target: self, action: nil)
     }()
     
-    private lazy var tabListView = TabPageView(tabs: tabs)
+    private let listCollectionView = ListCollectionView()
+    
+    private let columnStyleButton: UIButton = {
+        let button = UIButton()
+        let config = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
+        let image = UIImage(systemName: "square.grid.2x2", withConfiguration: config)
+        button.setImage(image, for: .normal)
+        return button
+    }()
     
     init(showDetailList: @escaping (GenderProfileItemViewModel) -> Void) {
         self.showDetailList = showDetailList
@@ -41,12 +48,18 @@ final class GenderListViewController: BaseViewController {
         navigationController?.navigationBar.topItem?.title = "Gender List"
         navigationItem.rightBarButtonItems = [selectBarButton, removeBarButton]
         
-        view.addSubview(tabListView)
+        view.addSubview(listCollectionView)
+        view.addSubview(columnStyleButton)
     }
     
     override func setupConstraints() {
-        tabListView.snp.makeConstraints {
+        listCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        columnStyleButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(20)
         }
     }
 }
@@ -68,39 +81,29 @@ extension GenderListViewController: ReactorKit.View {
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        tabListView.tabTapped
-            .map { Reactor.Action.selectTab($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        tabListView.pageSwiped
-            .map { Reactor.Action.swipePage($0) }
-            .bind(to: reactor.action)
-            .disposed(by: disposeBag)
-        
-        tabListView.columnStyleTapped
+        columnStyleButton.rx.tap
             .map { Reactor.Action.toggleColumnStyle }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        tabListView.itemTapped
-            .map { Reactor.Action.itemTapped(genderType: $0.genderType, indexPath: $0.indexPath) }
+        listCollectionView.itemTapped
+            .map { Reactor.Action.itemTapped($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        tabListView.scrolledToBottom
-            .map { Reactor.Action.scrolledToBottom(genderType: $0) }
+        listCollectionView.scrolledToBottom
+            .map { Reactor.Action.scrolledToBottom }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        tabListView.pullToRefresh
-            .map { Reactor.Action.pullToRefresh(genderType: $0) }
+        listCollectionView.pullToRefresh
+            .map { Reactor.Action.pullToRefresh }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
-        // 최초 양쪽 탭 데이터 로드
-        Observable.from(tabs)
-            .map { Reactor.Action.configure(genderType: $0) }
+        // 초기 fetch 트리거 — 1회성
+        reactor.state.take(1)
+            .map { _ in Reactor.Action.configure }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
     }
@@ -114,24 +117,13 @@ extension GenderListViewController: ReactorKit.View {
         reactor.state.map { $0.columnStyle }
             .distinctUntilChanged()
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in self?.tabListView.updateColumnStyle($0) })
+            .subscribe(onNext: { [weak self] in self?.listCollectionView.updateColumnStyle($0) })
             .disposed(by: disposeBag)
         
-        let selectedTab: Observable<PageInfo> = reactor.state.map { $0.selectedTab }
-        selectedTab
-            .distinctUntilChanged { lhs, rhs in lhs.current == rhs.current && lhs.prev == rhs.prev }
+        reactor.state.map { $0.listSnapshot }
+            .distinctUntilChanged()
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in self?.tabListView.updateSelectedTab($0) })
-            .disposed(by: disposeBag)
-        
-        for tab in tabs {
-            bindList(reactor: reactor, tab: tab)
-        }
-        
-        reactor.pulse(\.$pageScrollTo)
-            .compactMap { $0 }
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in self?.tabListView.scrollToPage($0) })
+            .subscribe(onNext: { [weak self] in self?.listCollectionView.applySnapshot($0) })
             .disposed(by: disposeBag)
         
         reactor.pulse(\.$moveToDetail)
@@ -145,31 +137,6 @@ extension GenderListViewController: ReactorKit.View {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.view.makeToast("리스트를 불러오는데 실패하였습니다. 다시 시도해 주세요", withDuration: 2, delay: 1.5)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindList(reactor: Reactor, tab: String) {
-        let snapshot = reactor.state.map { state -> ListSnapshot in
-            let sub = state.lists[tab] ?? .init()
-            
-            return ListSnapshot(
-                items: sub.items,
-                isSelectMode: state.isSelectMode,
-                selectedIndexes: sub.selectedIndexes
-            )
-        }
-        
-        snapshot
-            .distinctUntilChanged { lhs, rhs in
-                let sameMode = lhs.isSelectMode == rhs.isSelectMode
-                let sameSelection = lhs.selectedIndexes == rhs.selectedIndexes
-                let sameItems = lhs.items.map { $0.email } == rhs.items.map { $0.email }
-                return sameMode && sameSelection && sameItems
-            }
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] snap in
-                self?.tabListView.applySnapshot(snap, for: tab)
             })
             .disposed(by: disposeBag)
     }

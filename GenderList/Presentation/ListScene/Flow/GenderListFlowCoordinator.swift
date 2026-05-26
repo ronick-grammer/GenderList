@@ -33,10 +33,7 @@ final class GenderListFlowCoordinator {
     }
     
     private func showDetailList(genderProfileItem: GenderProfileItemViewModel) {
-        parentCoordinator?.startDetailsView(
-            dependencies: GenderListDetailDIContainer.Dependencies(
-                genderProfileItem: genderProfileItem
-            )
-        )
+        let detailVC = dependencies.makeGenderDetailsViewController(genderProfileItem: genderProfileItem)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

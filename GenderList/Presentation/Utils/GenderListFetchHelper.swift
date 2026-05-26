@@ -9,42 +9,41 @@ import RxSwift
 
 protocol GenderListPagenationFetchable {
     associatedtype Element
-    
+
     var disposeBag: DisposeBag { get }
-    
-    func fetch(genderType: String) -> Observable<[Element]>
+
+    func fetch() -> Observable<[Element]>
 }
 
 struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
     typealias Element = GenderProfileItemViewModel
-    
+
     private let pagenationGenerator = DefaultPagenationGenerator<Element>(page: 1, limit: 40)
     private let genderListUsecase: GenderListUsecase
-    
+
     var disposeBag = DisposeBag()
-    
-    private var seed: String {
-        "GenderList"
-    }
-    
+
+    private let genderType = "male"
+    private var seed: String { "GenderList" }
+
     public var fetchStatus: FetchStatus {
         pagenationGenerator.fetchStatus
     }
-    
+
     init(usecase: GenderListUsecase) {
         self.genderListUsecase = usecase
     }
-    
-    func fetch(genderType: String) -> Observable<[Element]> {
+
+    func fetch() -> Observable<[Element]> {
         let result = PublishSubject<[Element]>()
-        
+
         self.pagenationGenerator.next(fetch: { page, limit, completion, error in
             Task {
                 do {
                     let query = GenderListQuery(page: page, results: limit, seed: self.seed)
                     let genderList = try await self.genderListUsecase.get(genderListQuery: query)
-                        .filter { $0.gender == genderType }
-                    
+                        .filter { $0.gender == self.genderType }
+
                     completion(genderList)
                 } catch(let e) {
                     error(e)
@@ -55,15 +54,15 @@ struct DefaultGenderListFetchHelper: GenderListPagenationFetchable {
         }, onError: {
             result.onError($0)
         })
-        
+
         return result.asObservable()
     }
-    
-    func reset(genderType: String) -> Observable<[Element]> {
+
+    func reset() -> Observable<[Element]> {
         pagenationGenerator.reset()
-        return fetch(genderType: genderType)
+        return fetch()
     }
-    
+
     func remove(at indexes: [Int]) -> [Element] {
         pagenationGenerator.remove(indexes: indexes)
     }

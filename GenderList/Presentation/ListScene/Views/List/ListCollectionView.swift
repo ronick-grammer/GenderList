@@ -9,14 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-struct ListSnapshot {
-    let items: [GenderProfileItemViewModel]
-    let isSelectMode: Bool
-    let selectedIndexes: Set<Int>
-    
-    static let empty = ListSnapshot(items: [], isSelectMode: false, selectedIndexes: [])
-}
-
 final class ListCollectionView: UICollectionView {
     private let cellIdentifier = "ListViewCell"
     
