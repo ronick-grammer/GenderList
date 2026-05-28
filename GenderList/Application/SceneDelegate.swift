@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let appDIContainer = AppDIContainer()
+    
+    private var appFlowCoordinator: AppFlowCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -20,12 +22,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.isTranslucent = false
         
         window?.rootViewController = navigationController
-        let appFlowCoordinator = AppFlowCoordinator(
+        let coordinator = AppFlowCoordinator(
             navigationController: navigationController,
             appDIContainer: appDIContainer
         )
         
-        appFlowCoordinator.start()
+        appFlowCoordinator = coordinator
+        
+        coordinator.start()
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }

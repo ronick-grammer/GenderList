@@ -9,7 +9,6 @@ import UIKit
 
 protocol GenderListFlowCoodinatorDependencies {
     func makeGenderListViewController(showDetailList: @escaping (GenderProfileItemViewModel) -> Void) -> GenderListViewController
-    func makeGenderDetailsViewController(genderProfileItem: GenderProfileItemViewModel) -> DetailViewController
 }
 
 final class GenderListFlowCoordinator {
@@ -17,8 +16,6 @@ final class GenderListFlowCoordinator {
     private weak var parentCoordinator: AppFlowCoordinator?
     
     private let dependencies: GenderListFlowCoodinatorDependencies
-    
-    private weak var GenderListVC: GenderListViewController?
     
     init(navigationController: UINavigationController, parentCoordinator: AppFlowCoordinator, dependencies: GenderListFlowCoodinatorDependencies) {
         self.navigationController = navigationController
@@ -29,11 +26,11 @@ final class GenderListFlowCoordinator {
     func start() {
         let vc = dependencies.makeGenderListViewController(showDetailList: showDetailList)
         navigationController?.pushViewController(vc, animated: true)
-        GenderListVC = vc
     }
     
     private func showDetailList(genderProfileItem: GenderProfileItemViewModel) {
-        let detailVC = dependencies.makeGenderDetailsViewController(genderProfileItem: genderProfileItem)
-        navigationController?.pushViewController(detailVC, animated: true)
+        parentCoordinator?.startDetailsView(
+            dependencies: GenderListDetailDIContainer.Dependencies(genderProfileItem: genderProfileItem)
+        )
     }
 }
