@@ -87,12 +87,12 @@ extension GenderListViewController: ReactorKit.View {
             .disposed(by: disposeBag)
         
         listCollectionView.itemTapped
-            .map { Reactor.Action.itemTapped($0) }
+            .map { Reactor.Action.selectItem($0) }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         
         listCollectionView.scrolledToBottom
-            .map { Reactor.Action.scrolledToBottom }
+            .map { Reactor.Action.scrollToBottom }
             .bind(to: reactor.action)
             .disposed(by: disposeBag)
         

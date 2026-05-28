@@ -20,9 +20,9 @@ final class GenderListViewReactor: Reactor {
         case configure
         case toggleSelectMode
         case toggleColumnStyle
-        case scrolledToBottom
+        case scrollToBottom
         case pullToRefresh
-        case itemTapped(IndexPath)
+        case selectItem(IndexPath)
         case removeSelected
     }
     
@@ -72,6 +72,7 @@ final class GenderListViewReactor: Reactor {
                 .catch { .just(.setError($0.localizedDescription)) }
         case .toggleSelectMode:
             let newMode = !currentState.isSelectMode
+            
             if newMode {
                 return .just(.setSelectMode(true))
             } else {
@@ -83,8 +84,7 @@ final class GenderListViewReactor: Reactor {
         case .toggleColumnStyle:
             let next: ColumnStyle = (currentState.columnStyle == .one) ? .two : .one
             return .just(.setColumnStyle(next))
-            
-        case .scrolledToBottom:
+        case .scrollToBottom:
             guard fetchHelper.fetchStatus == .ready else { return .empty() }
             
             return fetchHelper.fetch()
@@ -94,7 +94,7 @@ final class GenderListViewReactor: Reactor {
             return fetchHelper.reset()
                 .map { Mutation.setItems($0) }
                 .catch { .just(.setError($0.localizedDescription)) }
-        case .itemTapped(let indexPath):
+        case .selectItem(let indexPath):
             if currentState.isSelectMode {
                 return .just(.toggleSelected(indexPath.row))
             } else {
